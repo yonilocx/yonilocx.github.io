@@ -115,6 +115,8 @@
             height: 38px;
             width: auto;
             object-fit: contain;
+            background: transparent;
+            mix-blend-mode: screen; /* Blends solid black background color seamlessly into the dark layout */
         }
         .nav-text {
             font-weight: 900;
@@ -370,23 +372,31 @@
             height: 100%;
             border: 0;
         }
+        
+        /* More Videos card showing cover6.jpg as a clean, stylish backdrop */
         .more-videos-card {
-            border: 1px dashed #ffea00;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.85)), url('cover6.jpg');
+            background-size: cover;
+            background-position: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 234, 0, 0.3);
         }
         .more-videos-card:hover {
-            background-color: rgba(255, 234, 0, 0.1);
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.65)), url('cover6.jpg');
+            border-color: #ffea00;
             transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.15);
         }
         .arrow-icon {
             font-size: 2.2rem;
             color: #ffea00;
             margin-bottom: 5px;
+            text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.8);
         }
         .more-text {
             font-size: 0.85rem;
@@ -394,6 +404,7 @@
             letter-spacing: 2px;
             color: #ffffff;
             font-weight: 700;
+            text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.8);
         }
 
         footer {
@@ -453,6 +464,8 @@
             width: auto;
             object-fit: contain;
             filter: drop-shadow(0px 4px 15px rgba(255, 215, 0, 0.15));
+            background: transparent;
+            mix-blend-mode: screen; /* Blends solid black background color seamlessly into the dark layout */
         }
 
         .copyright {
@@ -550,7 +563,7 @@
             <!-- Track 5: Beast -->
             <a href="https://soundcloud.com/yonilocx" target="_blank" class="track-card">
                 <div class="album-art">
-                    <img src="cover5.jpg" alt="Beast Cover">
+                    <img src="cover6.jpg" alt="Beast Cover">
                 </div>
                 <div class="track-details">
                     <h3 class="track-title">Beast</h3>
@@ -562,7 +575,7 @@
             <div class="ep-card-container" id="epContainer">
                 <div class="track-card" id="epCard" style="flex: 1;">
                     <div class="album-art">
-                        <img src="cover6.jpg" alt="Littel Heart EP Cover">
+                        <img src="cover5.jpg" alt="Littel Heart EP Cover">
                     </div>
                     <div class="track-details">
                         <h3 class="track-title">Littel Heart</h3>
@@ -654,6 +667,7 @@
                 <iframe src="https://www.youtube.com/embed/y801FxNYriE" allowfullscreen></iframe>
             </div>
             
+            <!-- More Videos card featuring cover7.jpg as a backdrop image -->
             <a href="https://www.youtube.com/@yonilocx" target="_blank" class="video-card more-videos-card">
                 <span class="arrow-icon">➔</span>
                 <span class="more-text">More Videos</span>
