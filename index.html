@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YONI LOCX | Official Website</title>
     
-    <!-- Chunky display font styling -->
+    <!-- Heavy display and clean body font pairings -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Clara&family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Global Icon Library for Buttons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <style>
         * {
@@ -27,7 +30,7 @@
             line-height: 1.6;
         }
 
-        /* 2-Image 10-Second Auto-Fading Background Slideshow */
+        /* 2-Image Fading Background Slideshow */
         .bg-slideshow {
             position: fixed;
             top: 0;
@@ -50,10 +53,9 @@
             background-repeat: no-repeat;
             opacity: 0;
             z-index: 0;
-            animation: imageFade 20s linear infinite; /* Total loop time for 2 images */
+            animation: imageFade 20s linear infinite;
         }
 
-        /* Points directly to your uploaded bg1.jpg and bg2.jpg */
         .bg-slideshow li:nth-child(1) { 
             background-image: url('bg1.jpg'); 
             animation-delay: 0s;
@@ -63,7 +65,6 @@
             animation-delay: 10s;
         }
 
-        /* Smooth Crossfade Animation for 2 Images */
         @keyframes imageFade { 
             0% { opacity: 0; }
             10% { opacity: 1; }
@@ -72,23 +73,24 @@
             100% { opacity: 0; }
         }
 
+        /* Lightened overlay mask to prevent background photos from being too dark */
         .scrim-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.9) 100%);
+            background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.65) 100%);
             z-index: -1;
         }
 
+        /* Ultra Bold Chunky Title Styles */
         .funky-title {
-            font-family: 'Clara', 'Arial Black', sans-serif;
             font-weight: 900;
             text-transform: uppercase;
             color: #ffffff;
             letter-spacing: -1px;
-            text-shadow: 4px 4px 0px #ffd700, -2px -2px 0px #000;
+            text-shadow: 3px 3px 0px #ffd700, -1px -1px 0px #000;
         }
 
         nav {
@@ -102,13 +104,24 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 5%;
+            padding: 12px 5%;
         }
-        .nav-logo {
-            font-family: 'Clara', sans-serif;
-            font-size: 1.4rem;
+        .nav-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .nav-logo-img {
+            height: 38px;
+            width: auto;
+            object-fit: contain;
+        }
+        .nav-text {
+            font-weight: 900;
+            font-size: 1.3rem;
             color: #ffffff;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         .nav-links a {
             color: #ffffff;
@@ -118,7 +131,7 @@
             letter-spacing: 2px;
             margin-left: 25px;
             transition: color 0.3s ease;
-            font-weight: 600;
+            font-weight: 700;
         }
         .nav-links a:hover {
             color: #ffea00;
@@ -143,44 +156,48 @@
             text-transform: uppercase;
             letter-spacing: 5px;
             color: #ffea00;
-            font-weight: 600;
+            font-weight: 700;
             margin-top: 10px;
-            text-shadow: 0px 2px 10px rgba(0,0,0,0.9);
+            text-shadow: 0px 2px 12px rgba(0,0,0,0.9);
         }
 
+        /* Fluid glass water transparency overlay */
         section {
-            padding: 90px 8%;
-            max-width: 1300px;
-            margin: 40px auto;
-            background-color: rgba(0, 0, 0, 0.78);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 215, 0, 0.15);
-            border-radius: 8px;
+            padding: 80px 6%;
+            max-width: 1200px;
+            margin: 60px auto;
+            background: rgba(10, 8, 5, 0.55);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 215, 0, 0.12);
+            border-radius: 16px;
         }
         .section-title {
-            font-size: 2.8rem;
-            margin-bottom: 45px;
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 50px;
             text-align: center;
         }
 
         .tracks-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
         .track-card {
-            background-color: rgba(15, 15, 15, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 6px;
+            background-color: rgba(15, 15, 15, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
             overflow: hidden;
             text-decoration: none;
             display: block;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
         }
         .track-card:hover {
             transform: translateY(-8px);
             border-color: #ffd700;
-            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.15);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
         }
         .album-art {
             width: 100%;
@@ -197,21 +214,15 @@
             height: 100%;
             object-fit: cover;
         }
-        .art-fallback {
-            position: absolute;
-            color: rgba(255, 215, 0, 0.3);
-            font-family: 'Clara', sans-serif;
-            font-size: 3rem;
-        }
         .track-details {
             padding: 20px;
             text-align: center;
         }
         .track-title {
             color: #ffffff;
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 5px;
+            font-size: 1.25rem;
+            font-weight: 900;
+            margin-bottom: 6px;
             text-transform: uppercase;
         }
         .track-type {
@@ -219,23 +230,137 @@
             font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        /* Interactive Multi-Layout Wrapper for Album Tracklist Dropdowns */
+        .ep-card-container {
+            position: relative;
+            display: flex;
+            gap: 20px;
+            align-items: stretch;
+            grid-column: span 1;
+        }
+        @media (min-width: 900px) {
+            .ep-card-container.expanded {
+                grid-column: span 2;
+            }
+        }
+        .ep-tracklist-panel {
+            flex: 1;
+            background: rgba(20, 16, 12, 0.85);
+            border: 1px solid rgba(255, 215, 0, 0.25);
+            border-radius: 12px;
+            padding: 20px;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            animation: slideRight 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .ep-card-container.expanded .ep-tracklist-panel {
+            display: flex;
+        }
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 8px;
+        }
+        .panel-title {
+            font-size: 1.1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: #ffd700;
+            letter-spacing: 1px;
+        }
+        .close-panel-btn {
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .close-panel-btn:hover {
+            color: #ffffff;
+        }
+        .track-list-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .track-row-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            text-decoration: none;
+            color: #ffffff;
+            transition: all 0.2s ease;
+        }
+        .track-row-item:hover {
+            background: rgba(255, 215, 0, 0.1);
+            border-color: rgba(255, 215, 0, 0.4);
+            transform: translateX(4px);
+        }
+        .track-name-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .track-num {
+            font-size: 0.85rem;
+            color: #ffea00;
+            font-weight: 700;
+        }
+        .track-name {
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .track-play-icon {
+            font-size: 0.8rem;
+            color: #888;
+            transition: color 0.2s;
+        }
+        .track-row-item:hover .track-play-icon {
+            color: #ffea00;
+        }
+
+        @keyframes slideRight {
+            from { opacity: 0; transform: translateX(-15px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         .bio-text p {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-            color: #e0e0e0;
+            margin-bottom: 24px;
+            font-size: 1.15rem;
+            color: #e5e5e5;
             text-align: justify;
+            line-height: 1.8;
+        }
+        .bio-subheading {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #ffea00;
+            margin: 35px 0 15px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
         }
         .video-card {
             background-color: #000;
-            border-radius: 4px;
+            border-radius: 8px;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.1);
             aspect-ratio: 16 / 9;
@@ -264,16 +389,17 @@
             margin-bottom: 5px;
         }
         .more-text {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             color: #ffffff;
+            font-weight: 700;
         }
 
         footer {
             background-color: rgba(0,0,0,0.95);
             border-top: 1px solid rgba(255, 215, 0, 0.2);
-            padding: 60px 5% 30px 5%;
+            padding: 70px 5% 40px 5%;
             text-align: center;
         }
         .footer-grid {
@@ -281,15 +407,15 @@
             grid-template-columns: 1fr 1fr;
             gap: 40px;
             max-width: 1000px;
-            margin: 0 auto 40px auto;
+            margin: 0 auto 50px auto;
         }
         .group-title {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 3px;
             color: #ffea00;
-            margin-bottom: 20px;
-            font-weight: 700;
+            margin-bottom: 25px;
+            font-weight: 900;
         }
         .links-flex {
             display: flex;
@@ -303,8 +429,13 @@
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border: 1px solid #ffffff;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
             transition: all 0.3s ease;
         }
         .network-btn:hover {
@@ -312,28 +443,38 @@
             background-color: #ffd700;
             border-color: #ffd700;
         }
-        .copyright {
-            font-size: 0.75rem;
-            color: #666;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-top: 40px;
+        
+        .good-size-logo-wrap {
+            margin: 20px auto 30px auto;
+            text-align: center;
+        }
+        .good-size-logo {
+            height: 75px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0px 4px 15px rgba(255, 215, 0, 0.15));
         }
 
-        @media (max-width: 1024px) {
-            .video-grid { grid-template-columns: repeat(2, 1fr); }
+        .copyright {
+            font-size: 0.8rem;
+            color: #888;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 700;
         }
+
         @media (max-width: 768px) {
             .hero-title { font-size: 3.8rem; }
-            .section-title { font-size: 2rem; }
+            .section-title { font-size: 2.2rem; }
             .video-grid, .footer-grid { grid-template-columns: 1fr; }
             section { padding: 50px 20px; }
+            .good-size-logo { height: 60px; }
+            .ep-card-container { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 2-Image Fading Track Links -->
     <ul class="bg-slideshow">
         <li></li>
         <li></li>
@@ -341,7 +482,10 @@
     <div class="scrim-overlay"></div>
 
     <nav>
-        <div class="nav-logo">Yoni Locx</div>
+        <div class="nav-logo-container">
+            <img src="logo.png" alt="Logo" class="nav-logo-img">
+            <span class="nav-text">Yoni Locx</span>
+        </div>
         <div class="nav-links">
             <a href="#music">Music</a>
             <a href="#about">Bio</a>
@@ -359,11 +503,10 @@
         <h2 class="section-title funky-title">Selected Tracks</h2>
         <div class="tracks-grid">
             
+            <!-- Track 1 -->
             <a href="https://www.youtube.com/watch?v=VCzVrVCd2Ls" target="_blank" class="track-card">
                 <div class="album-art">
-                    <!-- Swap this with your uploaded cover art file name, e.g., cover1.jpg -->
                     <img src="cover4.jpg" alt="Ewnetawen Cover">
-                    <div class="art-fallback">YL</div>
                 </div>
                 <div class="track-details">
                     <h3 class="track-title">Ewnetawen (እውነታውን)</h3>
@@ -371,10 +514,10 @@
                 </div>
             </a>
 
+            <!-- Track 2 -->
             <a href="https://www.youtube.com/watch?v=NK5uvH3FQpc" target="_blank" class="track-card">
                 <div class="album-art">
                     <img src="cover1.jpg" alt="Selihom Cover">
-                    <div class="art-fallback">YL</div>
                 </div>
                 <div class="track-details">
                     <h3 class="track-title">Selihom</h3>
@@ -382,10 +525,10 @@
                 </div>
             </a>
 
+            <!-- Track 3 -->
             <a href="https://www.youtube.com/watch?v=y801FxNYriE" target="_blank" class="track-card">
                 <div class="album-art">
                     <img src="cover3.jpg" alt="Orenda Cover">
-                    <div class="art-fallback">YL</div>
                 </div>
                 <div class="track-details">
                     <h3 class="track-title">Orenda</h3>
@@ -393,16 +536,72 @@
                 </div>
             </a>
 
+            <!-- Track 4 -->
             <a href="https://www.youtube.com/watch?v=52UAAJEqImE" target="_blank" class="track-card">
                 <div class="album-art">
-                    <img src="cover2.jpg"Habeshawi Cover">
-                    <div class="art-fallback">YL</div>
+                    <img src="cover2.jpg" alt="Habeshawi Cover">
                 </div>
                 <div class="track-details">
                     <h3 class="track-title">Habeshawi (ሀበሻዊ)</h3>
                     <p class="track-type">Single</p>
                 </div>
             </a>
+
+            <!-- Track 5: Beast -->
+            <a href="https://www.youtube.com/watch?v=L06JRGsVpLo" target="_blank" class="track-card">
+                <div class="album-art">
+                    <img src="cover6.jpg" alt="Beast Cover">
+                </div>
+                <div class="track-details">
+                    <h3 class="track-title">Beast</h3>
+                    <p class="track-type">Breakthrough Single</p>
+                </div>
+            </a>
+
+            <!-- Track 6: Littel Heart EP Container Box (Positioned exactly as Track 6) -->
+            <div class="ep-card-container" id="epContainer">
+                <div class="track-card" id="epCard" style="flex: 1;">
+                    <div class="album-art">
+                        <img src="cover5.jpg" alt="Littel Heart EP Cover">
+                    </div>
+                    <div class="track-details">
+                        <h3 class="track-title">Littel Heart</h3>
+                        <p class="track-type">Debut EP // Click to Expand</p>
+                    </div>
+                </div>
+                <div class="ep-tracklist-panel">
+                    <div class="panel-header">
+                        <span class="panel-title">Tracklist</span>
+                        <button class="close-panel-btn" id="closePanelBtn">&times;</button>
+                    </div>
+                    <div class="track-list-rows">
+                        <a href="https://soundcloud.com/yonilocx" target="_blank" class="track-row-item">
+                            <div class="track-name-wrap"><span class="track-num">01</span><span class="track-name">Beast (Radio Edit)</span></div>
+                            <i class="fa-solid fa-arrow-up-right-from-square track-play-icon"></i>
+                        </a>
+                        <a href="https://soundcloud.com/yonilocx" target="_blank" class="track-row-item">
+                            <div class="track-name-wrap"><span class="track-num">02</span><span class="track-name">Fikir Teffa</span></div>
+                            <i class="fa-solid fa-arrow-up-right-from-square track-play-icon"></i>
+                        </a>
+                        <a href="https://soundcloud.com/yonilocx" target="_blank" class="track-row-item">
+                            <div class="track-name-wrap"><span class="track-num">03</span><span class="track-name">Hell Yeah</span></div>
+                            <i class="fa-solid fa-arrow-up-right-from-square track-play-icon"></i>
+                        </a>
+                        <a href="https://soundcloud.com/yonilocx" target="_blank" class="track-row-item">
+                            <div class="track-name-wrap"><span class="track-num">04</span><span class="track-name">Rap Slave (Radio Edit)</span></div>
+                            <i class="fa-solid fa-arrow-up-right-from-square track-play-icon"></i>
+                        </a>
+                        <a href="https://soundcloud.com/yonilocx" target="_blank" class="track-row-item">
+                            <div class="track-name-wrap"><span class="track-num">05</span><span class="track-name">Struggle in Success</span></div>
+                            <i class="fa-solid fa-arrow-up-right-from-square track-play-icon"></i>
+                        </a>
+                        <a href="https://soundcloud.com/yonilocx" target="_blank" class="track-row-item">
+                            <div class="track-name-wrap"><span class="track-num">06</span><span class="track-name">Talk Less,Do More (TLDM)</span></div>
+                            <i class="fa-solid fa-arrow-up-right-from-square track-play-icon"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </section>
@@ -411,10 +610,33 @@
         <h2 class="section-title funky-title">Biography</h2>
         <div class="bio-text">
             <p>
-                Yoni Locx (born Yihonal Sahilu Melka) is an Ethiopian rapper, songwriter, record producer, and entrepreneur from Negele Borana, Oromia, Ethiopia. He is known for his independent hip-hop music, which combines contemporary rap with Ethiopian influences. His lyrics often explore themes of ambition, resilience, self-improvement, and personal experiences.
+                Yoni Locx (born Yihonal Sahilu Melka; 27 August 1998) is an Ethiopian rapper, songwriter, record producer, and entrepreneur from Negele Borana, Oromia, Ethiopia. He is known for his independent hip-hop music, which combines contemporary rap with Ethiopian influences. His lyrics often explore themes of ambition, resilience, self-improvement, and personal experiences.
+            </p>
+            
+            <h3 class="bio-subheading">Early Life</h3>
+            <p>
+                Yihonal Sahilu Melka was born on 27 August 1998 in Negele Borana, Oromia, Ethiopia. During his teenage years, he developed a deep passion for hip-hop and music production. While attending school, he frequently performed rap verses for classmates and friends during breaks, gradually earning recognition among his peers for his lyrical ability.
             </p>
             <p>
-                Driven by his curiosity for music production during his teenage years, he taught himself to use digital audio software by installing FL Studio on a computer in his school's Information Technology (IT) classroom, spending break times experimenting with beat-making and recording. This raw determination set the foundation for launching his independent record label, Raw-Verse Records.
+                Driven by his curiosity for music production, he taught himself to use digital audio software. He installed FL Studio on a computer in his school's Information Technology (IT) classroom and spent break times experimenting with beat-making and recording ideas. The activity was eventually discovered by the school administration, and he received a formal warning. The incident strengthened his determination to pursue music, and he continued developing his skills outside of school.
+            </p>
+            
+            <h3 class="bio-subheading">Career Timeline</h3>
+            <p>
+                Yoni Locx began his musical journey during his teenage years under the stage name Løcx Wagøne. In 2017, he independently released several songs through online platforms, experimenting with his sound and developing his songwriting and production skills. Much of his early work was later lost after his original YouTube channel, which hosted his earliest recordings, was deleted. As a result, many of his releases from that period are no longer publicly available. One of the few surviving recordings is the SoundCloud track "Music is my destiny... (prod by Locx Wagone)". Another early release, "Savageness," was originally published in early 2019 and remains available on SoundCloud.
+            </p>
+            <p>
+                In 2019, he adopted the stage name YONI LOCX and released the single "Beast," marking the beginning of a new chapter in his career. The release introduced a more refined artistic identity and established the name under which he continues to perform. In 2021, Yoni Locx released his debut extended play (EP), titled "Little Heart EP". He has since built momentum by releasing several highly impactful singles and projects, including "Yehiwot Fettena & Struggle In Success," "Struggle In Success (Remix)," "Habeshawi," "Orenda," "Selihom," and his hit single "Ewnetawen."
+            </p>
+            
+            <h3 class="bio-subheading">Raw-Verse Records</h3>
+            <p>
+                Yoni Locx is the founder of Raw-Verse Records, an independent record label and recording studio currently under development. The label is intended to support independent artists and serve as a creative hub for music production, recording, and distribution. In addition to releasing his own forward-thinking records, he plans to use Raw-Verse Records to collaborate with, mentor, and develop emerging musicians.
+            </p>
+
+            <h3 class="bio-subheading">Musical Style</h3>
+            <p>
+                Yoni Locx's music combines contemporary hip-hop, trap, and rap with rich Ethiopian musical influences. He performs in both Amharic and English, allowing him to reach diverse audiences while proudly expressing his cultural background. His musical style seamlessly blends melodic elements with intricate lyrical storytelling, serving as a powerful reflection of both modern hip-hop trends and his native Ethiopian heritage.
             </p>
         </div>
     </section>
@@ -423,16 +645,16 @@
         <h2 class="section-title funky-title">Visual Showcase</h2>
         <div class="video-grid">
             <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/VCzVrVCd2Ls" allowfullscreen></iframe>
             </div>
             <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/NK5uvH3FQpc" allowfullscreen></iframe>
             </div>
             <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/y801FxNYriE" allowfullscreen></iframe>
             </div>
             
-            <a href="https://youtube.com" target="_blank" class="video-card more-videos-card">
+            <a href="https://www.youtube.com/@yonilocx" target="_blank" class="video-card more-videos-card">
                 <span class="arrow-icon">➔</span>
                 <span class="more-text">More Videos</span>
             </a>
@@ -444,25 +666,54 @@
             <div>
                 <h4 class="group-title">Streaming Platforms</h4>
                 <div class="links-flex">
-                    <a href="#" target="_blank" class="network-btn">Spotify</a>
-                    <a href="#" target="_blank" class="network-btn">Apple Music</a>
-                    <a href="#" target="_blank" class="network-btn">SoundCloud</a>
-                    <a href="#" target="_blank" class="network-btn">Deezer</a>
+                    <a href="https://open.spotify.com/artist/1cMP1n46bLB7v3cZhVluhx" target="_blank" class="network-btn"><i class="fab fa-spotify" style="color:#1DB954;"></i> Spotify</a>
+                    <a href="https://music.apple.com/dk/artist/yoni-locx/1494557001" target="_blank" class="network-btn"><i class="fab fa-apple" style="color:#ffffff;"></i> Apple</a>
+                    <a href="https://soundcloud.com/yonilocx" target="_blank" class="network-btn"><i class="fab fa-soundcloud" style="color:#FF5500;"></i> SoundCloud</a>
+                    <a href="https://music.youtube.com/channel/UCK240FK-2v6-kx-ohxr3iNA" target="_blank" class="network-btn"><i class="fab fa-youtube" style="color:#FF0000;"></i> YouTube Music</a>
                 </div>
             </div>
 
             <div>
                 <h4 class="group-title">Social Channels</h4>
                 <div class="links-flex">
-                    <a href="https://www.instagram.com/yonilocxx/" target="_blank" class="network-btn">Instagram</a>
-                    <a href="https://x.com/yonilocx" target="_blank" class="network-btn">X / Twitter</a>
-                    <a href="https://web.facebook.com/yonilocxx" target="_blank" class="network-btn">Facebook</a>
-                    <a href="https://www.youtube.com/@yonilocx" target="_blank" class="network-btn">YouTube</a>
+                    <a href="https://www.instagram.com/yonilocxx/" target="_blank" class="network-btn"><i class="fab fa-instagram" style="color:#E1306C;"></i> Instagram</a>
+                    <a href="https://x.com/yonilocx" target="_blank" class="network-btn"><i class="fab fa-x-twitter" style="color:#ffffff;"></i> X / Twitter</a>
+                    <a href="https://web.facebook.com/yonilocxx" target="_blank" class="network-btn"><i class="fab fa-facebook-f" style="color:#1877F2;"></i> Facebook</a>
+                    <a href="https://www.youtube.com/@yonilocx" target="_blank" class="network-btn"><i class="fab fa-youtube" style="color:#FF0000;"></i> YouTube</a>
                 </div>
             </div>
         </div>
-        <p class="copyright">&copy; 2026 Yoni Locx // Raw-Verse Records.</p>
+
+        <div class="good-size-logo-wrap">
+            <img src="logo.png" alt="Yoni Locx Master Logo" class="good-size-logo">
+        </div>
+        
+        <p class="copyright">© 2026 Yoni Locx // Raw-Verse Records.</p>
     </footer>
 
+    <script>
+        const epCard = document.getElementById('epCard');
+        const epContainer = document.getElementById('epContainer');
+        const closePanelBtn = document.getElementById('closePanelBtn');
+
+        // Toggle panel expansion when clicking the main EP card
+        epCard.addEventListener('click', (e) => {
+            e.stopPropagation();
+            epContainer.classList.toggle('expanded');
+        });
+
+        // Close panel when close button is clicked
+        closePanelBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            epContainer.classList.remove('expanded');
+        });
+
+        // Close panel if clicking anywhere outside the container box
+        document.addEventListener('click', (e) => {
+            if (!epContainer.contains(e.target)) {
+                epContainer.classList.remove('expanded');
+            }
+        });
+    </script>
 </body>
 </html>
