@@ -27,7 +27,7 @@
             line-height: 1.6;
         }
 
-        /* 10-Second Background Slideshow */
+        /* 2-Image 10-Second Auto-Fading Background Slideshow */
         .bg-slideshow {
             position: fixed;
             top: 0;
@@ -50,21 +50,25 @@
             background-repeat: no-repeat;
             opacity: 0;
             z-index: 0;
-            animation: imageFade 50s linear infinite;
+            animation: imageFade 20s linear infinite; /* Total loop time for 2 images */
         }
 
-        /* Default placeholder images until you upload your own */
-        .bg-slideshow li:nth-child(1) { background-image: url('https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1500'); animation-delay: 0s; }
-        .bg-slideshow li:nth-child(2) { background-image: url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1500'); animation-delay: 10s; }
-        .bg-slideshow li:nth-child(3) { background-image: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1500'); animation-delay: 20s; }
-        .bg-slideshow li:nth-child(4) { background-image: url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1500'); animation-delay: 30s; }
-        .bg-slideshow li:nth-child(5) { background-image: url('https://images.unsplash.com/photo-1571330735066-03add5742836?q=80&w=1500'); animation-delay: 40s; }
+        /* Points directly to your uploaded bg1.jpg and bg2.jpg */
+        .bg-slideshow li:nth-child(1) { 
+            background-image: url('bg1.jpg'); 
+            animation-delay: 0s;
+        }
+        .bg-slideshow li:nth-child(2) { 
+            background-image: url('bg2.jpg'); 
+            animation-delay: 10s;
+        }
 
+        /* Smooth Crossfade Animation for 2 Images */
         @keyframes imageFade { 
-            0% { opacity: 0; animation-timing-function: ease-in; }
-            4% { opacity: 1; animation-timing-function: ease-out; }
-            20% { opacity: 1; }
-            24% { opacity: 0; }
+            0% { opacity: 0; }
+            10% { opacity: 1; }
+            50% { opacity: 1; }
+            60% { opacity: 0; }
             100% { opacity: 0; }
         }
 
@@ -329,10 +333,8 @@
 </head>
 <body>
 
+    <!-- 2-Image Fading Track Links -->
     <ul class="bg-slideshow">
-        <li></li>
-        <li></li>
-        <li></li>
         <li></li>
         <li></li>
     </ul>
@@ -359,6 +361,7 @@
             
             <a href="#" target="_blank" class="track-card">
                 <div class="album-art">
+                    <!-- Swap this with your uploaded cover art file name, e.g., cover1.jpg -->
                     <img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=500" alt="Ewnetawen Cover">
                     <div class="art-fallback">YL</div>
                 </div>
