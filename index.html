@@ -13,6 +13,30 @@
     <!-- Global Icon Library for Buttons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
+    <!-- Schema Markup to help Google update the Overview Panel -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MusicGroup",
+      "name": "Yoni Locx",
+      "genre": "Hip-Hop/Rap",
+      "description": "Yoni Locx is an Ethiopian rapper, songwriter, and record producer representing East Africa.",
+      "url": "https://yonilocx.github.io/",
+      "knowsAbout": "Ethiopian Hip-Hop",
+      "birthPlace": {
+        "@type": "Place",
+        "name": "Negele Borana, Oromia, Ethiopia"
+      },
+      "sameAs": [
+        "https://open.spotify.com/artist/1cMP1n46bLB7v3cZhVluhx",
+        "https://music.apple.com/dk/artist/yoni-locx/1494557001",
+        "https://soundcloud.com/yonilocx",
+        "https://www.youtube.com/@yonilocx",
+        "https://www.instagram.com/yonilocxx/"
+      ]
+    }
+    </script>
+
     <style>
         * {
             box-sizing: border-box;
@@ -112,7 +136,7 @@
             gap: 10px;
         }
         .nav-logo-img {
-            height: 38px;
+            height: 48px; /* Slightly increased size as requested */
             width: auto;
             object-fit: contain;
             background: transparent;
