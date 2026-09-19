@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YONI LOCX | Official Website</title>
     
-    <!-- Heavy display and clean body font pairings -->
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    
-    <!-- Global Icon Library for Buttons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <!-- EmailJS SDK -->
@@ -21,7 +19,7 @@
         })();
     </script>
 
-    <!-- GSAP for Realistic Flight Animation -->
+    <!-- GSAP Animation Engine -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
     <style>
@@ -95,7 +93,6 @@
             z-index: -1;
         }
 
-        /* Chunky Title Styles */
         .funky-title {
             font-weight: 900;
             text-transform: uppercase;
@@ -158,7 +155,7 @@
             padding: 110px 20px 40px 20px;
         }
 
-        /* PRE-SAVE CARD CONTAINER WITH RAVEN OVERLAY */
+        /* PRE-SAVE CARD CONTAINER */
         .presave-card-wrapper {
             position: relative;
             max-width: 960px;
@@ -166,14 +163,16 @@
             margin-bottom: 40px;
         }
 
-        /* RAVEN ANIMATION OVERLAY LAYER */
-        .raven-flyer {
+        /* FLYING BLACK GIF RAVEN OVERLAY */
+        .black-raven-gif {
             position: absolute;
-            width: 85px;
+            width: 95px;
             height: auto;
             pointer-events: none;
             z-index: 99;
             filter: drop-shadow(0px 8px 12px rgba(0,0,0,0.8));
+            /* Clip off bottom pixels if branch image is visible */
+            clip-path: inset(0px 0px 8% 0px); 
             will-change: transform, top, left;
         }
 
@@ -236,13 +235,34 @@
             align-items: center;
         }
 
-        .presave-cover {
+        /* ALBUM COVER CONTAINER FOR WHITE RAVEN PERCH */
+        .cover-wrapper {
+            position: relative;
             width: 220px;
             height: 220px;
+            flex-shrink: 0;
+        }
+
+        .presave-cover {
+            width: 100%;
+            height: 100%;
             border-radius: 10px;
             object-fit: cover;
             border: 1px solid rgba(255, 255, 255, 0.15);
-            flex-shrink: 0;
+        }
+
+        /* WHITE STILL RAVEN PERCHED ON ALBUM COVER */
+        .white-raven-perched {
+            position: absolute;
+            top: -42px;
+            right: -10px;
+            width: 75px;
+            height: auto;
+            pointer-events: none;
+            z-index: 10;
+            filter: drop-shadow(0px 6px 10px rgba(0,0,0,0.9));
+            /* Crop bottom branch */
+            clip-path: inset(0px 0px 10% 0px); 
         }
 
         .presave-info {
@@ -322,6 +342,12 @@
             margin-top: 10px;
         }
 
+        /* YELLOW PRE-SAVE BUTTON TARGET FOR BLACK RAVEN LANDING */
+        .presave-btn-container {
+            position: relative;
+            display: inline-block;
+        }
+
         .presave-btn {
             display: inline-flex;
             align-items: center;
@@ -339,6 +365,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            position: relative;
+            z-index: 2;
         }
 
         .presave-btn:hover {
@@ -465,7 +493,6 @@
             text-shadow: 0px 2px 12px rgba(0,0,0,0.9);
         }
 
-        /* Glass container styles */
         section {
             padding: 80px 6%;
             max-width: 1200px;
@@ -537,7 +564,6 @@
             font-weight: 700;
         }
 
-        /* Interactive EP Wrapper */
         .ep-card-container {
             position: relative;
             display: flex;
@@ -776,8 +802,8 @@
             .ep-card-container { flex-direction: column; }
             .presave-body { flex-direction: column; align-items: flex-start; }
             .presave-header { flex-direction: column; align-items: flex-start; gap: 10px; }
-            .presave-cover { width: 100%; height: 260px; }
-            .raven-flyer { width: 65px; }
+            .cover-wrapper { width: 100%; height: 260px; }
+            .black-raven-gif { width: 75px; }
         }
 
         @media (max-width: 480px) {
@@ -809,11 +835,10 @@
     </nav>
 
     <header>
-        <!-- PRE-SAVE CARD CONTAINER WITH RAVEN OVERLAY -->
+        <!-- PRE-SAVE CARD CONTAINER -->
         <div class="presave-card-wrapper" id="cardWrapper">
-            <!-- FLYING BLACK AND WHITE RAVEN IMAGES -->
-            <img src="rvbalck.png" id="blackRaven" class="raven-flyer" alt="Black Raven">
-            <img src="rvwhite.png" id="whiteRaven" class="raven-flyer" alt="White Raven">
+            <!-- FLYING BLACK GIF RAVEN OVERLAY -->
+            <img src="rvbalck.gif" id="blackRavenGif" class="black-raven-gif" alt="Flying Raven">
 
             <div class="presave-card">
                 <div class="presave-header">
@@ -830,7 +855,12 @@
                 </div>
 
                 <div class="presave-body">
-                    <img src="upcoming.png" alt="LIFE | ሕይወት Album Cover" class="presave-cover">
+                    <!-- ALBUM COVER WITH STILL WHITE RAVEN PERCHED ON TOP -->
+                    <div class="cover-wrapper">
+                        <img src="rvwhite.png" class="white-raven-perched" alt="White Raven Sitting">
+                        <img src="upcoming.png" alt="LIFE | ሕይወት Album Cover" class="presave-cover">
+                    </div>
+
                     <div class="presave-info">
                         <span class="presave-subtitle">YONI LOCX</span>
                         <h2 class="presave-title">LIFE | ሕይወት</h2>
@@ -851,9 +881,11 @@
                         <i class="fa-solid fa-language"></i> Switch to አማርኛ
                     </button>
 
-                    <button class="presave-btn" id="openPresaveModal">
-                        <i class="fa-solid fa-circle-dot"></i> PRE-SAVE NOW
-                    </button>
+                    <div class="presave-btn-container" id="yellowButtonContainer">
+                        <button class="presave-btn" id="openPresaveModal">
+                            <i class="fa-solid fa-circle-dot"></i> PRE-SAVE NOW
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1066,10 +1098,10 @@
     </footer>
 
     <script>
-        // LIVE COUNTDOWN TIMER (FIXED SECONDS COUNTING)
+        // LIVE COUNTDOWN TIMER
         function updateCountdown() {
-            // Target Date: September 25, 2026 18:00:00 East Africa Time
-            const targetDate = new Date("September 25, 2026 18:00:00 GMT+0300").getTime();
+            // Target Date: September 25, 2026 18:00:00 (EAT)
+            const targetDate = new Date(2026, 8, 25, 18, 0, 0).getTime();
             const now = new Date().getTime();
             const difference = targetDate - now;
 
@@ -1092,92 +1124,52 @@
             document.getElementById('secs').innerText = String(seconds).padStart(2, '0') + " S";
         }
 
-        // Run immediately and update every second
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
 
-        // RAVEN FLIGHT & PERCH ANIMATION (rvbalck.png & rvwhite.png)
-        const blackRaven = document.getElementById('blackRaven');
-        const whiteRaven = document.getElementById('whiteRaven');
+        // FLAP & PERCH ANIMATION FOR BLACK RAVEN GIF ON YELLOW PRE-SAVE BUTTON
+        const blackRavenGif = document.getElementById('blackRavenGif');
+        const yellowBtn = document.getElementById('yellowButtonContainer');
+        const cardWrapper = document.getElementById('cardWrapper');
 
-        // Spots along the top edge of the card where ravens can land
-        const landingSpotsLeft = [
-            { top: -25, left: 20 },
-            { top: -25, left: 140 },
-            { top: -25, left: 260 }
-        ];
+        function animateBlackRavenOnButton() {
+            if (!yellowBtn || !cardWrapper) return;
 
-        const landingSpotsRight = [
-            { top: -25, left: '72%' },
-            { top: -25, left: '82%' },
-            { top: -25, left: '60%' }
-        ];
+            // Get exact coordinates of the yellow button relative to the card container
+            const btnRect = yellowBtn.getBoundingClientRect();
+            const wrapperRect = cardWrapper.getBoundingClientRect();
 
-        let leftIndex = 0;
-        let rightIndex = 0;
+            // Calculate landing coordinates directly on top of yellow button
+            const targetLeft = (btnRect.left - wrapperRect.left) + (btnRect.width / 2) - 45; 
+            const targetTop = (btnRect.top - wrapperRect.top) - 42; 
 
-        function animateBlackRaven() {
-            const spot = landingSpotsLeft[leftIndex % landingSpotsLeft.length];
-            leftIndex++;
+            const tl = gsap.timeline({ onComplete: animateBlackRavenOnButton });
 
-            const tl = gsap.timeline({ onComplete: animateBlackRaven });
-
-            // Start off-screen left
-            tl.set(blackRaven, { top: -120, left: -160, rotation: -15, scaleX: 1 })
-            // Swoop and fly in around the presave card
-              .to(blackRaven, {
-                  duration: 3.5,
-                  top: spot.top,
-                  left: spot.left,
-                  rotation: 0,
-                  ease: "power2.inOut"
-              })
-              // Sit/Perch on top of card for 4 SECONDS
-              .to(blackRaven, { duration: 4 }) 
-              // Fly away off-screen right
-              .to(blackRaven, {
-                  duration: 3,
-                  top: -150,
-                  left: '110%',
-                  rotation: 20,
-                  ease: "power2.in"
-              });
-        }
-
-        function animateWhiteRaven() {
-            const spot = landingSpotsRight[rightIndex % landingSpotsRight.length];
-            rightIndex++;
-
-            const tl = gsap.timeline({ onComplete: animateWhiteRaven });
-
-            // Start off-screen right (facing left using scaleX: -1)
-            tl.set(whiteRaven, { top: -120, left: '110%', rotation: 15, scaleX: -1 })
-            // Swoop and fly in around presave card
-              .to(whiteRaven, {
-                  duration: 4,
-                  top: spot.top,
-                  left: spot.left,
-                  rotation: 0,
-                  ease: "power2.inOut"
-              })
-              // Sit/Perch on top of card for 4 SECONDS
-              .to(whiteRaven, { duration: 4 })
-              // Take off and fly away off-screen left
-              .to(whiteRaven, {
+            // 1. Swoop in smoothly from off-screen left
+            tl.set(blackRavenGif, { top: -140, left: -180, rotation: -12, scaleX: 1 })
+              .to(blackRavenGif, {
                   duration: 3.2,
-                  top: -150,
-                  left: -160,
-                  rotation: -20,
+                  top: targetTop,
+                  left: targetLeft,
+                  rotation: 0,
+                  ease: "power2.out"
+              })
+              // 2. Sit perched on top of the yellow button for 4 SECONDS
+              .to(blackRavenGif, { duration: 4 }) 
+              // 3. Take off smoothly and fly away off-screen right
+              .to(blackRavenGif, {
+                  duration: 2.8,
+                  top: -160,
+                  left: wrapperRect.width + 120,
+                  rotation: 18,
                   ease: "power2.in"
               });
         }
 
-        // Start Raven Motion Timelines once page loads
+        // Start flight animation timeline once page renders
         window.addEventListener('load', () => {
-            animateBlackRaven();
-            // Offset white raven takeoff slightly for dynamic timing
-            setTimeout(animateWhiteRaven, 1200);
+            animateBlackRavenOnButton();
         });
 
 
