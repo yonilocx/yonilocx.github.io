@@ -19,9 +19,6 @@
         })();
     </script>
 
-    <!-- GSAP Animation Engine -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-
     <style>
         * {
             box-sizing: border-box;
@@ -163,19 +160,6 @@
             margin-bottom: 40px;
         }
 
-        /* FLYING BLACK GIF RAVEN OVERLAY */
-        .black-raven-gif {
-            position: absolute;
-            width: 95px;
-            height: auto;
-            pointer-events: none;
-            z-index: 99;
-            filter: drop-shadow(0px 8px 12px rgba(0,0,0,0.8));
-            /* Clip off bottom pixels if branch image is visible */
-            clip-path: inset(0px 0px 8% 0px); 
-            will-change: transform, top, left;
-        }
-
         .presave-card {
             background: rgba(12, 12, 12, 0.92);
             backdrop-filter: blur(16px);
@@ -235,7 +219,6 @@
             align-items: center;
         }
 
-        /* ALBUM COVER CONTAINER FOR WHITE RAVEN PERCH */
         .cover-wrapper {
             position: relative;
             width: 220px;
@@ -249,20 +232,6 @@
             border-radius: 10px;
             object-fit: cover;
             border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        /* WHITE STILL RAVEN PERCHED ON ALBUM COVER */
-        .white-raven-perched {
-            position: absolute;
-            top: -42px;
-            right: -10px;
-            width: 75px;
-            height: auto;
-            pointer-events: none;
-            z-index: 10;
-            filter: drop-shadow(0px 6px 10px rgba(0,0,0,0.9));
-            /* Crop bottom branch */
-            clip-path: inset(0px 0px 10% 0px); 
         }
 
         .presave-info {
@@ -342,7 +311,6 @@
             margin-top: 10px;
         }
 
-        /* YELLOW PRE-SAVE BUTTON TARGET FOR BLACK RAVEN LANDING */
         .presave-btn-container {
             position: relative;
             display: inline-block;
@@ -695,10 +663,11 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             aspect-ratio: 16 / 9;
         }
-        .video-card iframe {
+        .video-card iframe, .video-card video {
             width: 100%;
             height: 100%;
             border: 0;
+            object-fit: cover;
         }
         .more-videos-card {
             border: 1px dashed #ffea00;
@@ -803,7 +772,6 @@
             .presave-body { flex-direction: column; align-items: flex-start; }
             .presave-header { flex-direction: column; align-items: flex-start; gap: 10px; }
             .cover-wrapper { width: 100%; height: 260px; }
-            .black-raven-gif { width: 75px; }
         }
 
         @media (max-width: 480px) {
@@ -837,8 +805,6 @@
     <header>
         <!-- PRE-SAVE CARD CONTAINER -->
         <div class="presave-card-wrapper" id="cardWrapper">
-            <!-- FLYING BLACK GIF RAVEN OVERLAY -->
-            <img src="rvbalck.gif" id="blackRavenGif" class="black-raven-gif" alt="Flying Raven">
 
             <div class="presave-card">
                 <div class="presave-header">
@@ -855,9 +821,8 @@
                 </div>
 
                 <div class="presave-body">
-                    <!-- ALBUM COVER WITH STILL WHITE RAVEN PERCHED ON TOP -->
+                    <!-- ALBUM COVER -->
                     <div class="cover-wrapper">
-                        <img src="rvwhite.png" class="white-raven-perched" alt="White Raven Sitting">
                         <img src="upcoming.png" alt="LIFE | ሕይወት Album Cover" class="presave-cover">
                     </div>
 
@@ -1032,7 +997,7 @@
                 Yoni Locx began his musical journey during his teenage years under the stage name Løcx Wagøne. In 2017, he independently released several songs through online platforms, experimenting with his sound and developing his songwriting and production skills. Much of his early work was later lost after his original YouTube channel, which hosted his earliest recordings, was deleted. As a result, many of his releases from that period are no longer publicly available. One of the few surviving recordings is the SoundCloud track "Music is my destiny... (prod by Locx Wagone)". Another early release, "Savageness," was originally published in early 2019 and remains available on SoundCloud.
             </p>
             <p>
-                In 2019, he adopted the stage name YONI LOCX and released the single "Beast," marking the beginning of a new chapter in his career. The release introduced a more refined artistic identity and established the name under which he continues to perform. In 2021, Yoni Locx released his debut extended play (EP), titled "Little Heart EP". He has since built momentum by releasing several highly impactful singles and projects, including "Yehiwot Fettena & Struggle In Success," "Struggle In Success (Remix)," "Habeshawi," "Orenda," "Selihom," and his hit single "Ewnetawen."
+                In 2019, he adopted the stage name YONI LOCX and released the single "Beast," marking the beginning of a new chapter in his career. The release introduced a more refined artistic identity and established the name under which he continues to perform. In 2021, Yoni Locx released his debut extended play (EP), titled "Little Heart EP". He has since built momentum by releasing several highly impactful singles and projects, including "Yehiwot Fettena & Struggle In Success," "Struggle In Success (Remix)," "Habeshawi," "Orenda", "Selihom," and his hit single "Ewnetawen."
             </p>
             
             <h3 class="bio-subheading">Raw-Verse Records</h3>
@@ -1100,7 +1065,6 @@
     <script>
         // LIVE COUNTDOWN TIMER
         function updateCountdown() {
-            // Target Date: September 25, 2026 18:00:00 (EAT)
             const targetDate = new Date(2026, 8, 25, 18, 0, 0).getTime();
             const now = new Date().getTime();
             const difference = targetDate - now;
@@ -1126,52 +1090,6 @@
 
         updateCountdown();
         setInterval(updateCountdown, 1000);
-
-
-        // FLAP & PERCH ANIMATION FOR BLACK RAVEN GIF ON YELLOW PRE-SAVE BUTTON
-        const blackRavenGif = document.getElementById('blackRavenGif');
-        const yellowBtn = document.getElementById('yellowButtonContainer');
-        const cardWrapper = document.getElementById('cardWrapper');
-
-        function animateBlackRavenOnButton() {
-            if (!yellowBtn || !cardWrapper) return;
-
-            // Get exact coordinates of the yellow button relative to the card container
-            const btnRect = yellowBtn.getBoundingClientRect();
-            const wrapperRect = cardWrapper.getBoundingClientRect();
-
-            // Calculate landing coordinates directly on top of yellow button
-            const targetLeft = (btnRect.left - wrapperRect.left) + (btnRect.width / 2) - 45; 
-            const targetTop = (btnRect.top - wrapperRect.top) - 42; 
-
-            const tl = gsap.timeline({ onComplete: animateBlackRavenOnButton });
-
-            // 1. Swoop in smoothly from off-screen left
-            tl.set(blackRavenGif, { top: -140, left: -180, rotation: -12, scaleX: 1 })
-              .to(blackRavenGif, {
-                  duration: 3.2,
-                  top: targetTop,
-                  left: targetLeft,
-                  rotation: 0,
-                  ease: "power2.out"
-              })
-              // 2. Sit perched on top of the yellow button for 4 SECONDS
-              .to(blackRavenGif, { duration: 4 }) 
-              // 3. Take off smoothly and fly away off-screen right
-              .to(blackRavenGif, {
-                  duration: 2.8,
-                  top: -160,
-                  left: wrapperRect.width + 120,
-                  rotation: 18,
-                  ease: "power2.in"
-              });
-        }
-
-        // Start flight animation timeline once page renders
-        window.addEventListener('load', () => {
-            animateBlackRavenOnButton();
-        });
-
 
         // LANGUAGE TOGGLE DATA
         const descEN = `
