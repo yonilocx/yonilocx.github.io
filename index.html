@@ -17,10 +17,12 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
         (function() {
-            // Initializing with EmailJS Public Key
             emailjs.init("1L6i8lc-a7-2mb7LF");
         })();
     </script>
+
+    <!-- GSAP for Realistic Raven Flight Animation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
     <style>
         * {
@@ -156,7 +158,25 @@
             padding: 110px 20px 40px 20px;
         }
 
-        /* PRE-SAVE CARD — EXPANDED WIDTH */
+        /* PRE-SAVE CARD CONTAINER WITH RAVEN OVERLAY */
+        .presave-card-wrapper {
+            position: relative;
+            max-width: 960px;
+            width: 100%;
+            margin-bottom: 40px;
+        }
+
+        /* RAVEN ANIMATION CANVAS */
+        #ravenCanvas {
+            position: absolute;
+            top: -120px;
+            left: -100px;
+            width: calc(100% + 200px);
+            height: calc(100% + 180px);
+            pointer-events: none;
+            z-index: 10;
+        }
+
         .presave-card {
             background: rgba(12, 12, 12, 0.92);
             backdrop-filter: blur(16px);
@@ -164,11 +184,11 @@
             border: 1px solid rgba(255, 215, 0, 0.35);
             border-radius: 14px;
             padding: 28px;
-            max-width: 960px; /* Stretched wider from 820px */
             width: 100%;
-            margin-bottom: 40px;
             text-align: left;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(255, 215, 0, 0.05);
+            position: relative;
+            z-index: 1;
         }
 
         .presave-header {
@@ -214,10 +234,9 @@
             align-items: center;
         }
 
-        /* LARGER ALBUM ART */
         .presave-cover {
-            width: 220px; /* Scaled up from 160px */
-            height: 220px; /* Scaled up from 160px */
+            width: 220px;
+            height: 220px;
             border-radius: 10px;
             object-fit: cover;
             border: 1px solid rgba(255, 255, 255, 0.15);
@@ -271,7 +290,6 @@
             margin-bottom: 12px;
         }
 
-        /* INTERACTIVE LANGUAGE TOGGLE BADGE */
         .lang-btn {
             display: inline-flex;
             align-items: center;
@@ -788,46 +806,51 @@
     </nav>
 
     <header>
-        <!-- PRE-SAVE CARD WITH EXPANDED LAYOUT -->
-        <div class="presave-card">
-            <div class="presave-header">
-                <div class="release-tag">
-                    <i class="fa-solid fa-fire"></i> NEW RELEASE — SEPT 25 @ 18:00 EAT
-                </div>
-                <div class="countdown-timer" id="timer">
-                    <span class="time-box" id="days">06 D</span>
-                    <span class="time-box" id="hours">08 H</span>
-                    <span class="time-box" id="mins">00 M</span>
-                    <span class="time-box" id="secs">42 S</span>
-                </div>
-            </div>
+        <!-- PRE-SAVE CARD CONTAINER WITH RAVEN ANIMATION LAYER -->
+        <div class="presave-card-wrapper">
+            <!-- CANVAS FOR FLYING AND LANDING RAVENS -->
+            <canvas id="ravenCanvas"></canvas>
 
-            <div class="presave-body">
-                <img src="upcoming.png" alt="LIFE | ሕይወት Album Cover" class="presave-cover">
-                <div class="presave-info">
-                    <span class="presave-subtitle">YONI LOCX</span>
-                    <h2 class="presave-title">LIFE | ሕይወት</h2>
-                    
-                    <!-- DYNAMIC DESCRIPTION CONTAINER -->
-                    <div class="presave-quote" id="presaveDesc">
-                        <p>“LIFE | ሕይወት” explores two sides of the same world: the street life and the fancy life.</p>
-                        <p>The street side is about survival, hustling, pressure, loyalty, risks, setbacks, and chasing dreams from the bottom. It’s the struggle, hunger, and reality behind the lifestyle.</p>
-                        <p>The fancy side is the other end of the journey: money, expensive clothes, nice cars, beautiful girls, luxury, freedom, and good times.</p>
-                        <p>The song captures the contrast between struggle and comfort, survival and success, the streets and the high life.</p>
+            <div class="presave-card">
+                <div class="presave-header">
+                    <div class="release-tag">
+                        <i class="fa-solid fa-fire"></i> NEW RELEASE — SEPT 25 @ 18:00 EAT
                     </div>
-
-                    <div class="presave-tagline" id="presaveTagline">Two lifestyles. One LIFE | ሕይወት.</div>
+                    <div class="countdown-timer" id="timer">
+                        <span class="time-box" id="days">06 D</span>
+                        <span class="time-box" id="hours">08 H</span>
+                        <span class="time-box" id="mins">00 M</span>
+                        <span class="time-box" id="secs">42 S</span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="presave-action-row">
-                <button class="lang-btn" id="langToggleBtn">
-                    <i class="fa-solid fa-language"></i> Switch to አማርኛ
-                </button>
+                <div class="presave-body">
+                    <img src="upcoming.png" alt="LIFE | ሕይወት Album Cover" class="presave-cover">
+                    <div class="presave-info">
+                        <span class="presave-subtitle">YONI LOCX</span>
+                        <h2 class="presave-title">LIFE | ሕይወት</h2>
+                        
+                        <!-- DYNAMIC DESCRIPTION CONTAINER -->
+                        <div class="presave-quote" id="presaveDesc">
+                            <p>“LIFE | ሕይወት” explores two sides of the same world: the street life and the fancy life.</p>
+                            <p>The street side is about survival, hustling, pressure, loyalty, risks, setbacks, and chasing dreams from the bottom. It’s the struggle, hunger, and reality behind the lifestyle.</p>
+                            <p>The fancy side is the other end of the journey: money, expensive clothes, nice cars, beautiful girls, luxury, freedom, and good times.</p>
+                            <p>The song captures the contrast between struggle and comfort, survival and success, the streets and the high life.</p>
+                        </div>
 
-                <button class="presave-btn" id="openPresaveModal">
-                    <i class="fa-solid fa-circle-dot"></i> PRE-SAVE NOW
-                </button>
+                        <div class="presave-tagline" id="presaveTagline">Two lifestyles. One LIFE | ሕይወት.</div>
+                    </div>
+                </div>
+
+                <div class="presave-action-row">
+                    <button class="lang-btn" id="langToggleBtn">
+                        <i class="fa-solid fa-language"></i> Switch to አማርኛ
+                    </button>
+
+                    <button class="presave-btn" id="openPresaveModal">
+                        <i class="fa-solid fa-circle-dot"></i> PRE-SAVE NOW
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -1045,6 +1068,135 @@
     </footer>
 
     <script>
+        // RAVEN ANIMATION ENGINE (CANVAS + GSAP)
+        const canvas = document.getElementById('ravenCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class Raven {
+            constructor(startX, startY, perchX, perchY, isLeft) {
+                this.x = startX;
+                this.y = startY;
+                this.perchX = perchX;
+                this.perchY = perchY;
+                this.isPerched = false;
+                this.wingAngle = 0;
+                this.rotation = 0;
+                this.scale = 0.8;
+                this.isLeft = isLeft;
+            }
+
+            update() {
+                if (!this.isPerched) {
+                    this.wingAngle += 0.25;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation);
+                ctx.scale(this.scale, this.scale);
+
+                // Main Black Body
+                ctx.fillStyle = '#000000';
+                ctx.beginPath();
+                ctx.ellipse(0, 0, 16, 8, 0, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Head
+                ctx.beginPath();
+                ctx.arc(12, -3, 6, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Beak
+                ctx.fillStyle = '#ffffff';
+                ctx.beginPath();
+                ctx.moveTo(17, -4);
+                ctx.lineTo(24, -1);
+                ctx.lineTo(17, 2);
+                ctx.closePath();
+                ctx.fill();
+
+                // White Feathers & Contrast Outline
+                ctx.strokeStyle = '#ffffff';
+                ctx.lineWidth = 1.2;
+                ctx.beginPath();
+                ctx.moveTo(-6, 0);
+                ctx.lineTo(6, 0);
+                ctx.stroke();
+
+                // Wings (Dynamic Flapping vs. Folded Landing State)
+                ctx.fillStyle = '#080808';
+                if (this.isPerched) {
+                    ctx.beginPath();
+                    ctx.ellipse(-2, -5, 12, 4, -Math.PI / 5, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.stroke();
+                } else {
+                    const wingY = Math.sin(this.wingAngle) * 18;
+                    ctx.beginPath();
+                    ctx.moveTo(-3, 0);
+                    ctx.quadraticCurveTo(0, wingY - 14, 14, wingY);
+                    ctx.lineTo(3, 0);
+                    ctx.closePath();
+                    ctx.fill();
+                    ctx.stroke();
+                }
+
+                ctx.restore();
+            }
+        }
+
+        // Initialize two ravens targeted to perch on top edge of the pre-save box
+        const raven1 = new Raven(20, 20, canvas.width * 0.28, 120, true);
+        const raven2 = new Raven(canvas.width - 20, 20, canvas.width * 0.72, 120, false);
+
+        // GSAP Motion Paths for Orbiting and Perching
+        gsap.to(raven1, {
+            duration: 4.5,
+            x: raven1.perchX,
+            y: raven1.perchY,
+            ease: "power2.inOut",
+            onUpdate: () => {
+                raven1.rotation = Math.atan2(raven1.perchY - raven1.y, raven1.perchX - raven1.x);
+            },
+            onComplete: () => {
+                raven1.isPerched = true;
+                raven1.rotation = 0.1;
+            }
+        });
+
+        gsap.to(raven2, {
+            duration: 5.2,
+            x: raven2.perchX,
+            y: raven2.perchY,
+            ease: "power2.inOut",
+            onUpdate: () => {
+                raven2.rotation = Math.atan2(raven2.perchY - raven2.y, raven2.perchX - raven2.x);
+            },
+            onComplete: () => {
+                raven2.isPerched = true;
+                raven2.rotation = -0.1;
+            }
+        });
+
+        function renderRavens() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            raven1.update();
+            raven1.draw();
+            raven2.update();
+            raven2.draw();
+            requestAnimationFrame(renderRavens);
+        }
+        renderRavens();
+
         // LANGUAGE TOGGLE DATA
         const descEN = `
             <p>“LIFE | ሕይወት” explores two sides of the same world: the street life and the fancy life.</p>
