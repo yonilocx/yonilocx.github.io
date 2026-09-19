@@ -21,7 +21,7 @@
         })();
     </script>
 
-    <!-- GSAP for Realistic Raven Flight Animation -->
+    <!-- GSAP for Realistic Flight Animation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
     <style>
@@ -166,15 +166,15 @@
             margin-bottom: 40px;
         }
 
-        /* RAVEN ANIMATION CANVAS */
-        #ravenCanvas {
+        /* RAVEN ANIMATION OVERLAY LAYER */
+        .raven-flyer {
             position: absolute;
-            top: -120px;
-            left: -100px;
-            width: calc(100% + 200px);
-            height: calc(100% + 180px);
+            width: 85px;
+            height: auto;
             pointer-events: none;
-            z-index: 10;
+            z-index: 99;
+            filter: drop-shadow(0px 8px 12px rgba(0,0,0,0.8));
+            will-change: transform, top, left;
         }
 
         .presave-card {
@@ -223,8 +223,10 @@
             border-radius: 4px;
             font-size: 0.8rem;
             font-weight: 900;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 215, 0, 0.4);
             font-family: monospace;
+            min-width: 45px;
+            text-align: center;
         }
 
         .presave-body {
@@ -775,6 +777,7 @@
             .presave-body { flex-direction: column; align-items: flex-start; }
             .presave-header { flex-direction: column; align-items: flex-start; gap: 10px; }
             .presave-cover { width: 100%; height: 260px; }
+            .raven-flyer { width: 65px; }
         }
 
         @media (max-width: 480px) {
@@ -806,21 +809,23 @@
     </nav>
 
     <header>
-        <!-- PRE-SAVE CARD CONTAINER WITH RAVEN ANIMATION LAYER -->
-        <div class="presave-card-wrapper">
-            <!-- CANVAS FOR FLYING AND LANDING RAVENS -->
-            <canvas id="ravenCanvas"></canvas>
+        <!-- PRE-SAVE CARD CONTAINER WITH RAVEN OVERLAY -->
+        <div class="presave-card-wrapper" id="cardWrapper">
+            <!-- FLYING BLACK AND WHITE RAVEN IMAGES -->
+            <img src="rvbalck.png" id="blackRaven" class="raven-flyer" alt="Black Raven">
+            <img src="rvwhite.png" id="whiteRaven" class="raven-flyer" alt="White Raven">
 
             <div class="presave-card">
                 <div class="presave-header">
                     <div class="release-tag">
                         <i class="fa-solid fa-fire"></i> NEW RELEASE — SEPT 25 @ 18:00 EAT
                     </div>
-                    <div class="countdown-timer" id="timer">
-                        <span class="time-box" id="days">06 D</span>
-                        <span class="time-box" id="hours">08 H</span>
+                    <!-- DYNAMIC COUNTDOWN TIMER -->
+                    <div class="countdown-timer">
+                        <span class="time-box" id="days">00 D</span>
+                        <span class="time-box" id="hours">00 H</span>
                         <span class="time-box" id="mins">00 M</span>
-                        <span class="time-box" id="secs">42 S</span>
+                        <span class="time-box" id="secs">00 S</span>
                     </div>
                 </div>
 
@@ -830,7 +835,6 @@
                         <span class="presave-subtitle">YONI LOCX</span>
                         <h2 class="presave-title">LIFE | ሕይወት</h2>
                         
-                        <!-- DYNAMIC DESCRIPTION CONTAINER -->
                         <div class="presave-quote" id="presaveDesc">
                             <p>“LIFE | ሕይወት” explores two sides of the same world: the street life and the fancy life.</p>
                             <p>The street side is about survival, hustling, pressure, loyalty, risks, setbacks, and chasing dreams from the bottom. It’s the struggle, hunger, and reality behind the lifestyle.</p>
@@ -879,7 +883,6 @@
         <h2 class="section-title funky-title">Selected Tracks</h2>
         <div class="tracks-grid">
             
-            <!-- Track 1 -->
             <a href="https://www.youtube.com/watch?v=VCzVrVCd2Ls" target="_blank" rel="noopener" class="track-card">
                 <div class="album-art">
                     <img src="cover4.jpg" alt="Ewnetawen Cover">
@@ -890,7 +893,6 @@
                 </div>
             </a>
 
-            <!-- Track 2 -->
             <a href="https://www.youtube.com/watch?v=NK5uvH3FQpc" target="_blank" rel="noopener" class="track-card">
                 <div class="album-art">
                     <img src="cover1.jpg" alt="Selihom Cover">
@@ -901,7 +903,6 @@
                 </div>
             </a>
 
-            <!-- Track 3 -->
             <a href="https://www.youtube.com/watch?v=y801FxNYriE" target="_blank" rel="noopener" class="track-card">
                 <div class="album-art">
                     <img src="cover3.jpg" alt="Orenda Cover">
@@ -912,7 +913,6 @@
                 </div>
             </a>
 
-            <!-- Track 4 -->
             <a href="https://www.youtube.com/watch?v=52UAAJEqImE" target="_blank" rel="noopener" class="track-card">
                 <div class="album-art">
                     <img src="cover2.jpg" alt="Habeshawi Cover">
@@ -923,7 +923,6 @@
                 </div>
             </a>
 
-            <!-- Track 5 -->
             <a href="https://soundcloud.com/yonilocx" target="_blank" rel="noopener" class="track-card">
                 <div class="album-art">
                     <img src="cover6.jpg" alt="Beast Cover">
@@ -934,7 +933,6 @@
                 </div>
             </a>
 
-            <!-- Track 6 -->
             <div class="ep-card-container" id="epContainer">
                 <div class="track-card" id="epCard" style="flex: 1;" tabindex="0" role="button" aria-expanded="false" aria-label="Toggle Littel Heart EP tracklist">
                     <div class="album-art">
@@ -1068,134 +1066,120 @@
     </footer>
 
     <script>
-        // RAVEN ANIMATION ENGINE (CANVAS + GSAP)
-        const canvas = document.getElementById('ravenCanvas');
-        const ctx = canvas.getContext('2d');
+        // LIVE COUNTDOWN TIMER (FIXED SECONDS COUNTING)
+        function updateCountdown() {
+            // Target Date: September 25, 2026 18:00:00 East Africa Time
+            const targetDate = new Date("September 25, 2026 18:00:00 GMT+0300").getTime();
+            const now = new Date().getTime();
+            const difference = targetDate - now;
 
-        function resizeCanvas() {
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        class Raven {
-            constructor(startX, startY, perchX, perchY, isLeft) {
-                this.x = startX;
-                this.y = startY;
-                this.perchX = perchX;
-                this.perchY = perchY;
-                this.isPerched = false;
-                this.wingAngle = 0;
-                this.rotation = 0;
-                this.scale = 0.8;
-                this.isLeft = isLeft;
+            if (difference <= 0) {
+                document.getElementById('days').innerText = "00 D";
+                document.getElementById('hours').innerText = "00 H";
+                document.getElementById('mins').innerText = "00 M";
+                document.getElementById('secs').innerText = "00 S";
+                return;
             }
 
-            update() {
-                if (!this.isPerched) {
-                    this.wingAngle += 0.25;
-                }
-            }
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-            draw() {
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.rotate(this.rotation);
-                ctx.scale(this.scale, this.scale);
-
-                // Main Black Body
-                ctx.fillStyle = '#000000';
-                ctx.beginPath();
-                ctx.ellipse(0, 0, 16, 8, 0, 0, Math.PI * 2);
-                ctx.fill();
-
-                // Head
-                ctx.beginPath();
-                ctx.arc(12, -3, 6, 0, Math.PI * 2);
-                ctx.fill();
-
-                // Beak
-                ctx.fillStyle = '#ffffff';
-                ctx.beginPath();
-                ctx.moveTo(17, -4);
-                ctx.lineTo(24, -1);
-                ctx.lineTo(17, 2);
-                ctx.closePath();
-                ctx.fill();
-
-                // White Feathers & Contrast Outline
-                ctx.strokeStyle = '#ffffff';
-                ctx.lineWidth = 1.2;
-                ctx.beginPath();
-                ctx.moveTo(-6, 0);
-                ctx.lineTo(6, 0);
-                ctx.stroke();
-
-                // Wings (Dynamic Flapping vs. Folded Landing State)
-                ctx.fillStyle = '#080808';
-                if (this.isPerched) {
-                    ctx.beginPath();
-                    ctx.ellipse(-2, -5, 12, 4, -Math.PI / 5, 0, Math.PI * 2);
-                    ctx.fill();
-                    ctx.stroke();
-                } else {
-                    const wingY = Math.sin(this.wingAngle) * 18;
-                    ctx.beginPath();
-                    ctx.moveTo(-3, 0);
-                    ctx.quadraticCurveTo(0, wingY - 14, 14, wingY);
-                    ctx.lineTo(3, 0);
-                    ctx.closePath();
-                    ctx.fill();
-                    ctx.stroke();
-                }
-
-                ctx.restore();
-            }
+            document.getElementById('days').innerText = String(days).padStart(2, '0') + " D";
+            document.getElementById('hours').innerText = String(hours).padStart(2, '0') + " H";
+            document.getElementById('mins').innerText = String(minutes).padStart(2, '0') + " M";
+            document.getElementById('secs').innerText = String(seconds).padStart(2, '0') + " S";
         }
 
-        // Initialize two ravens targeted to perch on top edge of the pre-save box
-        const raven1 = new Raven(20, 20, canvas.width * 0.28, 120, true);
-        const raven2 = new Raven(canvas.width - 20, 20, canvas.width * 0.72, 120, false);
+        // Run immediately and update every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
 
-        // GSAP Motion Paths for Orbiting and Perching
-        gsap.to(raven1, {
-            duration: 4.5,
-            x: raven1.perchX,
-            y: raven1.perchY,
-            ease: "power2.inOut",
-            onUpdate: () => {
-                raven1.rotation = Math.atan2(raven1.perchY - raven1.y, raven1.perchX - raven1.x);
-            },
-            onComplete: () => {
-                raven1.isPerched = true;
-                raven1.rotation = 0.1;
-            }
+
+        // RAVEN FLIGHT & PERCH ANIMATION (rvbalck.png & rvwhite.png)
+        const blackRaven = document.getElementById('blackRaven');
+        const whiteRaven = document.getElementById('whiteRaven');
+
+        // Spots along the top edge of the card where ravens can land
+        const landingSpotsLeft = [
+            { top: -25, left: 20 },
+            { top: -25, left: 140 },
+            { top: -25, left: 260 }
+        ];
+
+        const landingSpotsRight = [
+            { top: -25, left: '72%' },
+            { top: -25, left: '82%' },
+            { top: -25, left: '60%' }
+        ];
+
+        let leftIndex = 0;
+        let rightIndex = 0;
+
+        function animateBlackRaven() {
+            const spot = landingSpotsLeft[leftIndex % landingSpotsLeft.length];
+            leftIndex++;
+
+            const tl = gsap.timeline({ onComplete: animateBlackRaven });
+
+            // Start off-screen left
+            tl.set(blackRaven, { top: -120, left: -160, rotation: -15, scaleX: 1 })
+            // Swoop and fly in around the presave card
+              .to(blackRaven, {
+                  duration: 3.5,
+                  top: spot.top,
+                  left: spot.left,
+                  rotation: 0,
+                  ease: "power2.inOut"
+              })
+              // Sit/Perch on top of card for 4 SECONDS
+              .to(blackRaven, { duration: 4 }) 
+              // Fly away off-screen right
+              .to(blackRaven, {
+                  duration: 3,
+                  top: -150,
+                  left: '110%',
+                  rotation: 20,
+                  ease: "power2.in"
+              });
+        }
+
+        function animateWhiteRaven() {
+            const spot = landingSpotsRight[rightIndex % landingSpotsRight.length];
+            rightIndex++;
+
+            const tl = gsap.timeline({ onComplete: animateWhiteRaven });
+
+            // Start off-screen right (facing left using scaleX: -1)
+            tl.set(whiteRaven, { top: -120, left: '110%', rotation: 15, scaleX: -1 })
+            // Swoop and fly in around presave card
+              .to(whiteRaven, {
+                  duration: 4,
+                  top: spot.top,
+                  left: spot.left,
+                  rotation: 0,
+                  ease: "power2.inOut"
+              })
+              // Sit/Perch on top of card for 4 SECONDS
+              .to(whiteRaven, { duration: 4 })
+              // Take off and fly away off-screen left
+              .to(whiteRaven, {
+                  duration: 3.2,
+                  top: -150,
+                  left: -160,
+                  rotation: -20,
+                  ease: "power2.in"
+              });
+        }
+
+        // Start Raven Motion Timelines once page loads
+        window.addEventListener('load', () => {
+            animateBlackRaven();
+            // Offset white raven takeoff slightly for dynamic timing
+            setTimeout(animateWhiteRaven, 1200);
         });
 
-        gsap.to(raven2, {
-            duration: 5.2,
-            x: raven2.perchX,
-            y: raven2.perchY,
-            ease: "power2.inOut",
-            onUpdate: () => {
-                raven2.rotation = Math.atan2(raven2.perchY - raven2.y, raven2.perchX - raven2.x);
-            },
-            onComplete: () => {
-                raven2.isPerched = true;
-                raven2.rotation = -0.1;
-            }
-        });
-
-        function renderRavens() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            raven1.update();
-            raven1.draw();
-            raven2.update();
-            raven2.draw();
-            requestAnimationFrame(renderRavens);
-        }
-        renderRavens();
 
         // LANGUAGE TOGGLE DATA
         const descEN = `
