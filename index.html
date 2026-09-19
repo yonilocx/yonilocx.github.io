@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YONI LOCX | LIFE - Pre-Save</title>
+    <title>YONI LOCX | Official Website</title>
     
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -22,22 +22,85 @@
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
             background-color: #0b0b0b;
             color: #ffffff;
             min-height: 100vh;
-            padding: 20px;
         }
 
         /* --------------------------------------------------
-           1. GLASS HERO RELEASE BANNER
+           NAVBAR
+        -------------------------------------------------- */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(11, 11, 11, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-logo {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #ffd700;
+            letter-spacing: 2px;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+        }
+
+        /* --------------------------------------------------
+           MAIN CONTAINER
+        -------------------------------------------------- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: #ffd700;
+            letter-spacing: 2px;
+            margin: 50px 0 25px 0;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            padding-bottom: 8px;
+        }
+
+        /* --------------------------------------------------
+           1. TOP PRE-SAVE GLASS HERO BANNER
         -------------------------------------------------- */
         .glass-hero-banner {
             width: 100%;
-            max-width: 950px;
-            margin: 40px auto 20px auto;
+            margin: 20px auto 40px auto;
             background: rgba(15, 12, 8, 0.45);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
@@ -48,7 +111,6 @@
             text-align: left;
         }
 
-        /* Countdown Bar */
         .top-countdown-bar {
             display: flex;
             justify-content: space-between;
@@ -94,14 +156,12 @@
             margin: 0;
         }
 
-        /* Main Body Layout */
         .glass-banner-body {
             display: flex;
             gap: 25px;
             align-items: flex-start;
         }
 
-        /* Left Album Art */
         .glass-album-art {
             width: 180px;
             height: 180px;
@@ -118,7 +178,6 @@
             object-fit: cover;
         }
 
-        /* Right Details */
         .glass-album-details {
             flex: 1;
             display: flex;
@@ -142,14 +201,12 @@
             margin: 4px 0 10px 0;
         }
 
-        /* Concept Description Box */
         .glass-description-wrap {
             background: rgba(0, 0, 0, 0.4);
             border-left: 3px solid #ffd700;
             padding: 14px 16px;
             border-radius: 0 10px 10px 0;
             margin-bottom: 15px;
-            position: relative;
         }
 
         .desc-text {
@@ -189,11 +246,6 @@
             background: #ffffff;
         }
 
-        /* Pre-Save Link Button */
-        .glass-action-wrap {
-            margin-top: 5px;
-        }
-
         .glass-presave-btn {
             display: inline-flex;
             align-items: center;
@@ -206,7 +258,6 @@
             font-size: 0.8rem;
             padding: 10px 22px;
             border-radius: 6px;
-            text-decoration: none;
             cursor: pointer;
             transition: all 0.3s ease;
             border: none;
@@ -219,7 +270,102 @@
         }
 
         /* --------------------------------------------------
-           2. GLASS MODAL POPUP
+           2. BIOGRAPHY SECTION
+        -------------------------------------------------- */
+        .bio-card {
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 25px;
+            line-height: 1.8;
+            color: #cccccc;
+            font-size: 0.95rem;
+        }
+
+        /* --------------------------------------------------
+           3. DISCOGRAPHY GRID
+        -------------------------------------------------- */
+        .disco-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .disco-card {
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .disco-card:hover {
+            transform: translateY(-5px);
+            border-color: #ffd700;
+        }
+
+        .disco-card img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .disco-card h4 {
+            color: #ffffff;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .disco-card p {
+            color: #ffd700;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* --------------------------------------------------
+           4. AUDIO PLAYER / TRACKLIST
+        -------------------------------------------------- */
+        .track-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .track-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(20, 20, 20, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 12px 20px;
+            border-radius: 8px;
+        }
+
+        .track-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .track-play-btn {
+            background: #ffd700;
+            color: #000;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --------------------------------------------------
+           5. PRE-SAVE MODAL POPUP
         -------------------------------------------------- */
         .presave-modal-overlay {
             display: none;
@@ -333,7 +479,23 @@
             margin-bottom: 15px;
         }
 
+        /* --------------------------------------------------
+           FOOTER
+        -------------------------------------------------- */
+        footer {
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            text-align: center;
+            color: #777777;
+            font-size: 0.85rem;
+        }
+
         @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
             .glass-banner-body {
                 flex-direction: column;
                 align-items: center;
@@ -359,57 +521,125 @@
 </head>
 <body>
 
-    <!-- TOP LANDSCAPE GLASS HERO BANNER -->
-    <div class="glass-hero-banner">
-        <div class="top-countdown-bar">
-            <span class="countdown-label"><i class="fa-solid fa-fire"></i> New Release — Sept 25 @ 18:00 EAT</span>
-            <div class="countdown-mini-container" id="countdown">
-                <div class="mini-count"><span id="cd-days">00</span><p>D</p></div>
-                <div class="mini-count"><span id="cd-hours">00</span><p>H</p></div>
-                <div class="mini-count"><span id="cd-mins">00</span><p>M</p></div>
-                <div class="mini-count"><span id="cd-secs">00</span><p>S</p></div>
+    <!-- NAVBAR -->
+    <header>
+        <a href="#" class="brand-logo">YONI LOCX</a>
+        <nav>
+            <ul>
+                <li><a href="#release">Pre-Save</a></li>
+                <li><a href="#biography">Bio</a></li>
+                <li><a href="#discography">Releases</a></li>
+                <li><a href="#tracks">Music</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <!-- 1. TOP LANDSCAPE GLASS HERO BANNER -->
+        <section id="release" class="glass-hero-banner">
+            <div class="top-countdown-bar">
+                <span class="countdown-label"><i class="fa-solid fa-fire"></i> New Release — Sept 25 @ 18:00 EAT</span>
+                <div class="countdown-mini-container" id="countdown">
+                    <div class="mini-count"><span id="cd-days">00</span><p>D</p></div>
+                    <div class="mini-count"><span id="cd-hours">00</span><p>H</p></div>
+                    <div class="mini-count"><span id="cd-mins">00</span><p>M</p></div>
+                    <div class="mini-count"><span id="cd-secs">00</span><p>S</p></div>
+                </div>
+            </div>
+
+            <div class="glass-banner-body">
+                <div class="glass-album-art">
+                    <img src="upcoming.png" alt="LIFE | ሕይወት Cover Art">
+                </div>
+
+                <div class="glass-album-details">
+                    <div class="artist-brand">YONI LOCX</div>
+                    <h2 class="glass-song-title">LIFE | ሕይወት</h2>
+                    
+                    <!-- CONCEPT DESCRIPTION WITH TRANSLATION -->
+                    <div class="glass-description-wrap">
+                        <!-- English Version -->
+                        <span id="descEnglish" class="desc-text">
+                            “LIFE | ሕይወት” explores two sides of the same world: the street life and the fancy life. 
+                            The street side is about survival, hustling, pressure, loyalty, risks, setbacks, and chasing dreams from the bottom. 
+                            The fancy side is the other end of the journey: money, luxury, freedom, and good times. 
+                            The song captures the contrast between struggle and comfort, survival and success, the streets and the high life.
+                            <span class="desc-tagline">Two lifestyles. One LIFE | ሕይወት.</span>
+                            <button class="inline-lang-btn" onclick="toggleSongLang()"><i class="fa-solid fa-language"></i> አማርኛ</button>
+                        </span>
+
+                        <!-- Amharic Version -->
+                        <span id="descAmharic" class="desc-text" style="display: none;">
+                            “LIFE | ሕይወት” የአንዱን ዓለም ሁለቱን ገጽታዎች ይዳስሳል፡ የጎዳና ሕይወት እና የቅንጦት ሕይወት። 
+                            የጎዳናው ገጽታ ስለ ህልውና፣ ትግል፣ ጫና፣ ታማኝነት፣ አደጋዎች እና ከታች ተነስቶ ህልምን ስለማሳደድ ነው። 
+                            የቅንጦቱ ገጽታ ደግሞ የጉዞው ሌላኛው ጫፍ ነው፡ ገንዘብ፣ ሀብት፣ ነጻነት እና ደስ የሚሉ ጊዜያት። 
+                            ዘፈኑ በትግል እና በምቾት፣ በህልውና እና በስኬት፣ በጎዳና እና በከፍተኛ ሕይወት መካከል ያለውን ንፅፅር ያሳያል።
+                            <span class="desc-tagline">ሁለት የሕይወት ዘይቤዎች። አንድ LIFE | ሕይወት።</span>
+                            <button class="inline-lang-btn" onclick="toggleSongLang()"><i class="fa-solid fa-language"></i> ENG</button>
+                        </span>
+                    </div>
+
+                    <div class="glass-action-wrap">
+                        <button onclick="openPresaveModal()" class="glass-presave-btn">
+                            <i class="fa-brands fa-spotify"></i> Pre-Save Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. BIOGRAPHY SECTION -->
+        <h3 class="section-title" id="biography">Biography</h3>
+        <div class="bio-card">
+            Yoni Locx is an Ethiopian hip-hop artist, songwriter, and audio producer. Blending raw street storytelling with modern melodies, Yoni Locx captures the resilience, hustle, and cultural evolution of contemporary urban music.
+        </div>
+
+        <!-- 3. DISCOGRAPHY SECTION -->
+        <h3 class="section-title" id="discography">Discography</h3>
+        <div class="disco-grid">
+            <div class="disco-card">
+                <img src="cover1.jpg" alt="Ewnetawn">
+                <h4>Ewnetawn (እውነታውን)</h4>
+                <p>Single • 2026</p>
+            </div>
+            <div class="disco-card">
+                <img src="cover2.jpg" alt="Orrenda">
+                <h4>Orrenda</h4>
+                <p>Single • 2025</p>
+            </div>
+            <div class="disco-card">
+                <img src="upcoming.png" alt="LIFE | ሕይወት">
+                <h4>LIFE | ሕይወት</h4>
+                <p>Upcoming Single</p>
             </div>
         </div>
 
-        <div class="glass-banner-body">
-            <div class="glass-album-art">
-                <img src="upcoming.png" alt="LIFE | ሕይወት Cover Art">
+        <!-- 4. TRACKLIST / MUSIC PLAYER -->
+        <h3 class="section-title" id="tracks">Featured Tracks</h3>
+        <div class="track-list">
+            <div class="track-item">
+                <div class="track-info">
+                    <button class="track-play-btn"><i class="fa-solid fa-play"></i></button>
+                    <div>
+                        <strong>Ewnetawn (እውነታውን)</strong>
+                        <p style="font-size: 0.8rem; color: #aaa;">YONI LOCX</p>
+                    </div>
+                </div>
+                <span style="font-size: 0.85rem; color: #ffd700;">3:42</span>
             </div>
-
-            <div class="glass-album-details">
-                <div class="artist-brand">YONI LOCX</div>
-                <h2 class="glass-song-title">LIFE | ሕይወት</h2>
-                
-                <!-- CONCEPT DESCRIPTION WITH TRANSLATION -->
-                <div class="glass-description-wrap">
-                    <!-- English Version -->
-                    <span id="descEnglish" class="desc-text">
-                        “LIFE | ሕይወት” explores two sides of the same world: the street life and the fancy life. 
-                        The street side is about survival, hustling, pressure, loyalty, risks, setbacks, and chasing dreams from the bottom. 
-                        The fancy side is the other end of the journey: money, luxury, freedom, and good times. 
-                        The song captures the contrast between struggle and comfort, survival and success, the streets and the high life.
-                        <span class="desc-tagline">Two lifestyles. One LIFE | ሕይወት.</span>
-                        <button class="inline-lang-btn" onclick="toggleSongLang()"><i class="fa-solid fa-language"></i> አማርኛ</button>
-                    </span>
-
-                    <!-- Amharic Version -->
-                    <span id="descAmharic" class="desc-text" style="display: none;">
-                        “LIFE | ሕይወት” የአንዱን ዓለም ሁለቱን ገጽታዎች ይዳስሳል፡ የጎዳና ሕይወት እና የቅንጦት ሕይወት። 
-                        የጎዳናው ገጽታ ስለ ህልውና፣ ትግል፣ ጫና፣ ታማኝነት፣ አደጋዎች እና ከታች ተነስቶ ህልምን ስለማሳደድ ነው። 
-                        የቅንጦቱ ገጽታ ደግሞ የጉዞው ሌላኛው ጫፍ ነው፡ ገንዘብ፣ ሀብት፣ ነጻነት እና ደስ የሚሉ ጊዜያት። 
-                        ዘፈኑ በትግል እና በምቾት፣ በህልውና እና በስኬት፣ በጎዳና እና በከፍተኛ ሕይወት መካከል ያለውን ንፅፅር ያሳያል።
-                        <span class="desc-tagline">ሁለት የሕይወት ዘይቤዎች። አንድ LIFE | ሕይወት።</span>
-                        <button class="inline-lang-btn" onclick="toggleSongLang()"><i class="fa-solid fa-language"></i> ENG</button>
-                    </span>
+            <div class="track-item">
+                <div class="track-info">
+                    <button class="track-play-btn"><i class="fa-solid fa-play"></i></button>
+                    <div>
+                        <strong>Orrenda</strong>
+                        <p style="font-size: 0.8rem; color: #aaa;">YONI LOCX</p>
+                    </div>
                 </div>
-
-                <div class="glass-action-wrap">
-                    <button onclick="openPresaveModal()" class="glass-presave-btn">
-                        <i class="fa-brands fa-spotify"></i> Pre-Save Now
-                    </button>
-                </div>
+                <span style="font-size: 0.85rem; color: #ffd700;">3:15</span>
             </div>
         </div>
+
     </div>
 
     <!-- PRE-SAVE GLASS MODAL POPUP -->
@@ -442,6 +672,11 @@
             </div>
         </div>
     </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 YONI LOCX. All Rights Reserved.</p>
+    </footer>
 
     <script>
         // COUNTDOWN TIMER
