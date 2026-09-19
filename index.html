@@ -3,53 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YONI LOCX | Official Website</title>
+    <title>YONI LOCX | LIFE - Pre-Save</title>
     
-    <!-- Open Graph & Social Previews -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="YONI LOCX | Official Website">
-    <meta property="og:description" content="Official website of Ethiopian artist, songwriter, and producer Yoni Locx.">
-    <meta property="og:image" content="https://yonilocx.github.io/cover4.jpg">
-    <meta property="og:url" content="https://yonilocx.github.io/">
-    <meta name="twitter:card" content="summary_large_image">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Heavy display and clean body font pairings -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    
-    <!-- Global Icon Library for Buttons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
-    <!-- Schema Markup -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "MusicGroup",
-      "name": "Yoni Locx",
-      "genre": ["Hip-Hop", "Rap"],
-      "description": "Yoni Locx is an Ethiopian rapper, songwriter, and record producer.",
-      "url": "https://yonilocx.github.io/",
-      "knowsAbout": ["Ethiopian Hip-Hop", "Music Production"],
-      "publishingPrinciples": "https://yonilocx.github.io/#about",
-      "founder": {
-        "@type": "Person",
-        "name": "Yihonal Sahilu Melka",
-        "birthDate": "1998-08-27",
-        "birthPlace": {
-          "@type": "Place",
-          "name": "Negele Borana, Oromia, Ethiopia"
-        },
-        "jobTitle": ["Rapper", "Record Producer"],
-        "sameAs": [
-          "https://open.spotify.com/artist/1cMP1n46bLB7v3cZhVluhx",
-          "https://music.apple.com/dk/artist/yoni-locx/1494557001",
-          "https://soundcloud.com/yonilocx",
-          "https://www.youtube.com/@yonilocx",
-          "https://www.instagram.com/yonilocxx/"
-        ]
-      }
-    }
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          emailjs.init("1L6i8lc-a7-2mb7LF");
+       })();
     </script>
 
     <style>
@@ -57,702 +21,518 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        html {
-            scroll-behavior: smooth;
-        }
+
         body {
-            background-color: #000000;
+            background-color: #0b0b0b;
             color: #ffffff;
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
         }
 
-        /* 2-Image Fading Background Slideshow */
-        .bg-slideshow {
-            position: fixed;
-            top: 0;
-            left: 0;
+        /* --------------------------------------------------
+           1. GLASS HERO RELEASE BANNER
+        -------------------------------------------------- */
+        .glass-hero-banner {
             width: 100%;
-            height: 100%;
-            z-index: -2;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-        .bg-slideshow li {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0;
-            z-index: 0;
-            animation: imageFade 20s linear infinite;
+            max-width: 950px;
+            margin: 40px auto 20px auto;
+            background: rgba(15, 12, 8, 0.45);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 215, 0, 0.15);
+            text-align: left;
         }
 
-        .bg-slideshow li:nth-child(1) { 
-            background-image: url('bg1.jpg'); 
-            animation-delay: 0s;
-        }
-        .bg-slideshow li:nth-child(2) { 
-            background-image: url('bg2.jpg'); 
-            animation-delay: 10s;
-        }
-
-        @keyframes imageFade { 
-            0% { opacity: 0; }
-            10% { opacity: 1; }
-            50% { opacity: 1; }
-            60% { opacity: 0; }
-            100% { opacity: 0; }
-        }
-
-        .scrim-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.65) 100%);
-            z-index: -1;
-        }
-
-        .funky-title {
-            font-weight: 900;
-            text-transform: uppercase;
-            color: #ffffff;
-            letter-spacing: -1px;
-            text-shadow: 3px 3px 0px #ffd700, -1px -1px 0px #000;
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(15px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        /* Countdown Bar */
+        .top-countdown-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 5%;
-        }
-        .nav-logo-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .nav-logo-img {
-            height: 48px; 
-            width: auto;
-            object-fit: contain;
-            background: transparent;
-            mix-blend-mode: screen;
-        }
-        .nav-text {
-            font-weight: 900;
-            font-size: 1.3rem;
-            color: #ffffff;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .nav-links a {
-            color: #ffffff;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            margin-left: 25px;
-            transition: color 0.3s ease;
-            font-weight: 700;
-        }
-        .nav-links a:hover {
-            color: #ffea00;
-        }
-
-        header {
-            min-height: 95vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-        }
-        .hero-title {
-            font-size: 6.5rem;
-            line-height: 0.9;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 12px;
             margin-bottom: 20px;
         }
-        .hero-tagline {
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 5px;
+
+        .countdown-label {
             color: #ffea00;
-            font-weight: 700;
-            margin-top: 10px;
-            text-shadow: 0px 2px 12px rgba(0,0,0,0.9);
-        }
-
-        section {
-            padding: 80px 6%;
-            max-width: 1200px;
-            margin: 60px auto;
-            background: rgba(10, 8, 5, 0.55);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid rgba(255, 215, 0, 0.12);
-            border-radius: 16px;
-        }
-        .section-title {
-            font-size: 3rem;
+            font-size: 0.8rem;
             font-weight: 900;
-            margin-bottom: 50px;
-            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        .tracks-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+        .countdown-mini-container {
+            display: flex;
+            gap: 8px;
         }
-        .track-card {
-            background-color: rgba(15, 15, 15, 0.45);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            overflow: hidden;
-            text-decoration: none;
-            display: block;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            cursor: pointer;
-        }
-        .track-card:hover {
-            transform: translateY(-8px);
-            border-color: #ffd700;
-            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
-        }
-        .album-art {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            background-color: #111;
-            position: relative;
+
+        .mini-count {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 6px;
+            padding: 4px 8px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            gap: 4px;
         }
-        .album-art img {
+
+        .mini-count span {
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: #ffffff;
+        }
+
+        .mini-count p {
+            font-size: 0.6rem;
+            color: #ffd700;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        /* Main Body Layout */
+        .glass-banner-body {
+            display: flex;
+            gap: 25px;
+            align-items: flex-start;
+        }
+
+        /* Left Album Art */
+        .glass-album-art {
+            width: 180px;
+            height: 180px;
+            flex-shrink: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .glass-album-art img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        .track-details {
-            padding: 20px;
-            text-align: center;
-        }
-        .track-title {
-            color: #ffffff;
-            font-size: 1.25rem;
-            font-weight: 900;
-            margin-bottom: 6px;
-            text-transform: uppercase;
-        }
-        .track-type {
-            color: #ffd700;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 700;
+
+        /* Right Details */
+        .glass-album-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
-        .ep-card-container {
-            position: relative;
-            display: flex;
-            gap: 20px;
-            align-items: stretch;
-            grid-column: span 1;
-            user-select: none;
-        }
-        @media (min-width: 900px) {
-            .ep-card-container.expanded {
-                grid-column: span 2;
-            }
-        }
-        .ep-tracklist-panel {
-            flex: 1;
-            background: rgba(20, 16, 12, 0.85);
-            border: 1px solid rgba(255, 215, 0, 0.25);
-            border-radius: 12px;
-            padding: 20px;
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            animation: slideRight 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        .ep-card-container.expanded .ep-tracklist-panel {
-            display: flex;
-        }
-        .panel-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 8px;
-        }
-        .panel-title {
-            font-size: 1.1rem;
+        .artist-brand {
+            color: #ffd700;
+            font-size: 0.85rem;
             font-weight: 900;
             text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .glass-song-title {
+            font-size: 2.2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: #ffffff;
+            line-height: 1.1;
+            margin: 4px 0 10px 0;
+        }
+
+        /* Concept Description Box */
+        .glass-description-wrap {
+            background: rgba(0, 0, 0, 0.4);
+            border-left: 3px solid #ffd700;
+            padding: 14px 16px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .desc-text {
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: #dddddd;
+        }
+
+        .desc-tagline {
+            display: block;
+            margin-top: 8px;
             color: #ffd700;
-            letter-spacing: 1px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
         }
-        .close-panel-btn {
-            background: none;
-            border: none;
-            color: #888;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-        .close-panel-btn:hover {
-            color: #ffffff;
-        }
-        .track-list-rows {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .track-row-item {
-            display: flex;
-            justify-content: space-between;
+
+        .inline-lang-btn {
+            display: inline-flex;
             align-items: center;
-            padding: 10px 14px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 6px;
-            text-decoration: none;
-            color: #ffffff;
+            gap: 4px;
+            margin-left: 8px;
+            background: #ffd700;
+            color: #000000;
+            border: none;
+            font-size: 0.68rem;
+            font-weight: 900;
+            padding: 3px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            vertical-align: middle;
             transition: all 0.2s ease;
         }
-        .track-row-item:hover {
-            background: rgba(255, 215, 0, 0.1);
-            border-color: rgba(255, 215, 0, 0.4);
-            transform: translateX(4px);
-        }
-        .track-name-wrap {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .track-num {
-            font-size: 0.85rem;
-            color: #ffea00;
-            font-weight: 700;
-        }
-        .track-name {
-            font-size: 0.95rem;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-        .track-play-icon {
-            font-size: 0.8rem;
-            color: #888;
-            transition: color 0.2s;
-        }
-        .track-row-item:hover .track-play-icon {
-            color: #ffea00;
+
+        .inline-lang-btn:hover {
+            transform: scale(1.05);
+            background: #ffffff;
         }
 
-        @keyframes slideRight {
-            from { opacity: 0; transform: translateX(-15px); }
-            to { opacity: 1; transform: translateX(0); }
+        /* Pre-Save Link Button */
+        .glass-action-wrap {
+            margin-top: 5px;
         }
 
-        .bio-text p {
-            margin-bottom: 24px;
-            font-size: 1.15rem;
-            color: #e5e5e5;
-            text-align: justify;
-            line-height: 1.8;
-        }
-        .bio-subheading {
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: #ffea00;
-            margin: 35px 0 15px 0;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
-        }
-        .video-card {
-            background-color: #000;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            aspect-ratio: 16 / 9;
-        }
-        .video-card iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-        
-        .more-videos-card {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.85)), url('cover7.jpg');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-decoration: none;
-            transition: all 0.4s ease;
-            border: 1px solid rgba(255, 234, 0, 0.3);
-        }
-        .more-videos-card:hover {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.65)), url('cover7.jpg');
-            border-color: #ffea00;
-            transform: scale(1.02);
-            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.15);
-        }
-        .arrow-icon {
-            font-size: 2.2rem;
-            color: #ffea00;
-            margin-bottom: 5px;
-            text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.8);
-        }
-        .more-text {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #ffffff;
-            font-weight: 700;
-            text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.8);
-        }
-
-        footer {
-            background-color: rgba(0,0,0,0.95);
-            border-top: 1px solid rgba(255, 215, 0, 0.2);
-            padding: 70px 5% 40px 5%;
-            text-align: center;
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            max-width: 1000px;
-            margin: 0 auto 50px auto;
-        }
-        .group-title {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: #ffea00;
-            margin-bottom: 25px;
-            font-weight: 900;
-        }
-        .links-flex {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-        }
-        .network-btn {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 12px 24px;
-            border: 1px solid #ffffff;
-            border-radius: 4px;
+        .glass-presave-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-        }
-        .network-btn:hover {
-            color: #000000;
             background-color: #ffd700;
-            border-color: #ffd700;
-        }
-        
-        .good-size-logo-wrap {
-            margin: 20px auto 30px auto;
-            text-align: center;
-        }
-        .good-size-logo {
-            height: 300px;
-            width: auto;
-            object-fit: contain;
-            filter: drop-shadow(0px 4px 15px rgba(255, 215, 0, 0.15));
-            background: transparent;
-            mix-blend-mode: screen;
+            color: #000000;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.8rem;
+            padding: 10px 22px;
+            border-radius: 6px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
         }
 
-        .copyright {
-            font-size: 0.8rem;
-            color: #888;
-            letter-spacing: 1px;
+        .glass-presave-btn:hover {
+            background-color: #ffffff;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* --------------------------------------------------
+           2. GLASS MODAL POPUP
+        -------------------------------------------------- */
+        .presave-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .presave-modal-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(20, 15, 10, 0.85) 100%);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 450px;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 215, 0, 0.2);
+            color: #ffffff;
+        }
+
+        .close-modal-btn {
+            position: absolute;
+            top: 12px;
+            right: 18px;
+            background: none;
+            border: none;
+            color: #888888;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .close-modal-btn:hover { color: #ffd700; }
+
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: 900;
             text-transform: uppercase;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        .modal-sub {
+            font-size: 0.88rem;
+            color: #cccccc;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #ffd700;
             font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .input-group input {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 12px;
+            color: #ffffff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .input-group input:focus {
+            border-color: #ffd700;
+        }
+
+        .modal-next-btn {
+            width: 100%;
+            background: #ffd700;
+            color: #000000;
+            border: none;
+            padding: 12px;
+            font-weight: 900;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .modal-next-btn:hover {
+            background: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .success-icon {
+            font-size: 3rem;
+            color: #ffd700;
+            margin-bottom: 15px;
         }
 
         @media (max-width: 768px) {
-            .hero-title { font-size: 3.8rem; }
-            .section-title { font-size: 2.2rem; }
-            .video-grid, .footer-grid { grid-template-columns: 1fr; }
-            section { padding: 50px 20px; }
-            .ep-card-container { flex-direction: column; }
-            .good-size-logo { height: 70px; }
+            .glass-banner-body {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .top-countdown-bar {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .glass-album-art {
+                width: 100%;
+                max-width: 200px;
+                height: auto;
+                aspect-ratio: 1 / 1;
+            }
+            .glass-description-wrap {
+                border-left: none;
+                border-top: 2px solid #ffd700;
+                border-radius: 0 0 10px 10px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <ul class="bg-slideshow">
-        <li></li>
-        <li></li>
-    </ul>
-    <div class="scrim-overlay"></div>
-
-    <nav>
-        <div class="nav-logo-container">
-            <img src="logo.jpg" alt="Logo" class="nav-logo-img">
-            <span class="nav-text">Yoni Locx</span>
+    <!-- TOP LANDSCAPE GLASS HERO BANNER -->
+    <div class="glass-hero-banner">
+        <div class="top-countdown-bar">
+            <span class="countdown-label"><i class="fa-solid fa-fire"></i> New Release — Sept 25 @ 18:00 EAT</span>
+            <div class="countdown-mini-container" id="countdown">
+                <div class="mini-count"><span id="cd-days">00</span><p>D</p></div>
+                <div class="mini-count"><span id="cd-hours">00</span><p>H</p></div>
+                <div class="mini-count"><span id="cd-mins">00</span><p>M</p></div>
+                <div class="mini-count"><span id="cd-secs">00</span><p>S</p></div>
+            </div>
         </div>
-        <div class="nav-links">
-            <a href="#music">Music</a>
-            <a href="#about">Bio</a>
-            <a href="#videos">Visuals</a>
-            <a href="#connect">Links</a>
+
+        <div class="glass-banner-body">
+            <div class="glass-album-art">
+                <img src="https://yonilocx.github.io/upcoming-cover.jpg" alt="LIFE | ሕይወት Cover Art">
+            </div>
+
+            <div class="glass-album-details">
+                <div class="artist-brand">YONI LOCX</div>
+                <h2 class="glass-song-title">LIFE | ሕይወት</h2>
+                
+                <!-- CONCEPT DESCRIPTION WITH TRANSLATION -->
+                <div class="glass-description-wrap">
+                    <!-- English Version -->
+                    <span id="descEnglish" class="desc-text">
+                        “LIFE | ሕይወት” explores two sides of the same world: the street life and the fancy life. 
+                        The street side is about survival, hustling, pressure, loyalty, risks, setbacks, and chasing dreams from the bottom. 
+                        The fancy side is the other end of the journey: money, luxury, freedom, and good times. 
+                        The song captures the contrast between struggle and comfort, survival and success, the streets and the high life.
+                        <span class="desc-tagline">Two lifestyles. One LIFE | ሕይወት.</span>
+                        <button class="inline-lang-btn" onclick="toggleSongLang()"><i class="fa-solid fa-language"></i> አማርኛ</button>
+                    </span>
+
+                    <!-- Amharic Version -->
+                    <span id="descAmharic" class="desc-text" style="display: none;">
+                        “LIFE | ሕይወት” የአንዱን ዓለም ሁለቱን ገጽታዎች ይዳስሳል፡ የጎዳና ሕይወት እና የቅንጦት ሕይወት። 
+                        የጎዳናው ገጽታ ስለ ህልውና፣ ትግል፣ ጫና፣ ታማኝነት፣ አደጋዎች እና ከታች ተነስቶ ህልምን ስለማሳደድ ነው። 
+                        የቅንጦቱ ገጽታ ደግሞ የጉዞው ሌላኛው ጫፍ ነው፡ ገንዘብ፣ ሀብት፣ ነጻነት እና ደስ የሚሉ ጊዜያት። 
+                        ዘፈኑ በትግል እና በምቾት፣ በህልውና እና በስኬት፣ በጎዳና እና በከፍተኛ ሕይወት መካከል ያለውን ንፅፅር ያሳያል።
+                        <span class="desc-tagline">ሁለት የሕይወት ዘይቤዎች። አንድ LIFE | ሕይወት።</span>
+                        <button class="inline-lang-btn" onclick="toggleSongLang()"><i class="fa-solid fa-language"></i> ENG</button>
+                    </span>
+                </div>
+
+                <div class="glass-action-wrap">
+                    <button onclick="openPresaveModal()" class="glass-presave-btn">
+                        <i class="fa-brands fa-spotify"></i> Pre-Save Now
+                    </button>
+                </div>
+            </div>
         </div>
-    </nav>
+    </div>
 
-    <header>
-        <h1 class="hero-title funky-title">YONI LOCX</h1>
-        <p class="hero-tagline">"Lord Knows I'm Trying"</p>
-    </header>
-
-    <section id="music">
-        <h2 class="section-title funky-title">Selected Tracks</h2>
-        <div class="tracks-grid">
+    <!-- PRE-SAVE GLASS MODAL POPUP -->
+    <div id="presaveModal" class="presave-modal-overlay">
+        <div class="presave-modal-card">
+            <button class="close-modal-btn" onclick="closePresaveModal()">&times;</button>
             
-            <a href="https://www.youtube.com/watch?v=VCzVrVCd2Ls" target="_blank" class="track-card">
-                <div class="album-art">
-                    <img src="cover4.jpg" alt="Ewnetawen Cover">
-                </div>
-                <div class="track-details">
-                    <h3 class="track-title">Ewnetawen (እውነታውን)</h3>
-                    <p class="track-type">Single // Prod. Nocturnn</p>
-                </div>
-            </a>
-
-            <a href="https://www.youtube.com/watch?v=NK5uvH3FQpc" target="_blank" class="track-card">
-                <div class="album-art">
-                    <img src="cover1.jpg" alt="Selihom Cover">
-                </div>
-                <div class="track-details">
-                    <h3 class="track-title">Selihom</h3>
-                    <p class="track-type">Single</p>
-                </div>
-            </a>
-
-            <a href="https://www.youtube.com/watch?v=y801FxNYriE" target="_blank" class="track-card">
-                <div class="album-art">
-                    <img src="cover3.jpg" alt="Orenda Cover">
-                </div>
-                <div class="track-details">
-                    <h3 class="track-title">Orenda</h3>
-                    <p class="track-type">Single</p>
-                </div>
-            </a>
-
-            <a href="https://www.youtube.com/watch?v=52UAAJEqImE" target="_blank" class="track-card">
-                <div class="album-art">
-                    <img src="cover2.jpg" alt="Habeshawi Cover">
-                </div>
-                <div class="track-details">
-                    <h3 class="track-title">Habeshawi (ሀበሻዊ)</h3>
-                    <p class="track-type">Single</p>
-                </div>
-            </a>
-
-            <a href="https://soundcloud.com/yonilocx" target="_blank" class="track-card">
-                <div class="album-art">
-                    <img src="cover5.jpg" alt="Beast Cover">
-                </div>
-                <div class="track-details">
-                    <h3 class="track-title">Beast</h3>
-                    <p class="track-type">Breakthrough Single</p>
-                </div>
-            </a>
-
-            <div class="ep-card-container" id="epContainer">
-                <div class="track-card" id="epCard" style="flex: 1;">
-                    <div class="album-art">
-                        <img src="cover6.jpg" alt="Littel Heart EP Cover">
+            <div id="modalStep1">
+                <h3 class="modal-title">Pre-Save Single</h3>
+                <p class="modal-sub">Enter your details to receive the official stream link directly in your inbox on Sept 25 @ 18:00 EAT.</p>
+                
+                <form id="presaveForm" onsubmit="handlePresaveSubmit(event)">
+                    <div class="input-group">
+                        <label for="fanName">Your Name</label>
+                        <input type="text" id="fanName" required placeholder="Enter your name">
                     </div>
-                    <div class="track-details">
-                        <h3 class="track-title">Littel Heart</h3>
-                        <p class="track-type">Debut EP // Click to Expand</p>
+                    <div class="input-group">
+                        <label for="fanEmail">Your Email</label>
+                        <input type="email" id="fanEmail" required placeholder="Enter your email address">
                     </div>
-                </div>
-                <div class="ep-tracklist-panel">
-                    <div class="panel-header">
-                        <span class="panel-title">Tracklist</span>
-                        <button class="close-panel-btn" id="closePanelBtn">&times;</button>
-                    </div>
-                    <div class="track-list-rows">
-                        <a href="https://soundcloud.com/yonilocx" target="_blank" class="track-row-item">
-                            <div class="track-name-wrap"><span class="track-num">01</span><span class="track-name">Beast (Radio Edit)</span></div>
-                            <i class="fa-solid fa-arrow-up-right-from-square track-play-icon"></i>
-                        </a>
-                        <a href="https://soundcloud.com/yonilocx" target="_blank" class="track-row-item">
-                            <div class="track-name-wrap"><span class="track-num">02</span><span class="track-name">Fikir Teffa</span></div>
-                            <i class="fa-solid fa-arrow-up-right-from-square track-play-icon"></i>
-                        </a>
-                        <a href="https://soundcloud.com/yonilocx" target="_blank" class="track-row-item">
-                            <div class="track-name-wrap"><span class="track-num">03</span><span class="track-name">Hell Yeah</span></div>
-                            <i class="fa-solid fa-arrow-up-right-from-square track-play-icon"></i>
-                        </a>
-                        <a href="https://soundcloud.com/yonilocx" target="_blank" class="track-row-item">
-                            <div class="track-name-wrap"><span class="track-num">04</span><span class="track-name">Rap Slave (Radio Edit)</span></div>
-                            <i class="fa-solid fa-arrow-up-right-from-square track-play-icon"></i>
-                        </a>
-                        <a href="https://soundcloud.com/yonilocx" target="_blank" class="track-row-item">
-                            <div class="track-name-wrap"><span class="track-num">05</span><span class="track-name">Struggle in Success</span></div>
-                            <i class="fa-solid fa-arrow-up-right-from-square track-play-icon"></i>
-                        </a>
-                        <a href="https://soundcloud.com/yonilocx" target="_blank" class="track-row-item">
-                            <div class="track-name-wrap"><span class="track-num">06</span><span class="track-name">Talk Less,Do More (TLDM)</span></div>
-                            <i class="fa-solid fa-arrow-up-right-from-square track-play-icon"></i>
-                        </a>
-                    </div>
-                </div>
+                    <button type="submit" id="submitBtn" class="modal-next-btn">Next <i class="fa-solid fa-arrow-right"></i></button>
+                </form>
             </div>
 
-        </div>
-    </section>
-
-    <section id="about">
-        <h2 class="section-title funky-title">Biography</h2>
-        <div class="bio-text">
-            <p>
-                Yoni Locx (born Yihonal Sahilu Melka; 27 August 1998) is an Ethiopian rapper, songwriter, record producer, and entrepreneur from Negele Borana, Oromia, Ethiopia. He is known for his independent hip-hop music, which combines contemporary rap with Ethiopian influences. His lyrics often explore themes of ambition, resilience, self-improvement, and personal experiences.
-            </p>
-            
-            <h3 class="bio-subheading">Early Life</h3>
-            <p>
-                Yihonal Sahilu Melka was born on 27 August 1998 in Negele Borana, Oromia, Ethiopia. During his teenage years, he developed a deep passion for hip-hop and music production. While attending school, he frequently performed rap verses for classmates and friends during breaks, gradually earning recognition among his peers for his lyrical ability.
-            </p>
-            <p>
-                Driven by his curiosity for music production, he taught himself to use digital audio software. He installed FL Studio on a computer in his school's Information Technology (IT) classroom and spent break times experimenting with beat-making and recording ideas. The activity was eventually discovered by the school administration, and he received a formal warning. The incident strengthened his determination to pursue music, and he continued developing his skills outside of school.
-            </p>
-            
-            <h3 class="bio-subheading">Career Timeline</h3>
-            <p>
-                Yoni Locx began his musical journey during his teenage years under the stage name Løcx Wagøne. In 2017, he independently released several songs through online platforms, experimenting with his sound and developing his songwriting and production skills. Much of his early work was later lost after his original YouTube channel, which hosted his earliest recordings, was deleted. As a result, many of his releases from that period are no longer publicly available. One of the few surviving recordings is the SoundCloud track "Music is my destiny... (prod by Locx Wagone)". Another early release, "Savageness," was originally published in early 2019 and remains available on SoundCloud.
-            </p>
-            <p>
-                In 2019, he adopted the stage name YONI LOCX and released the single "Beast," marking the beginning of a new chapter in his career. The release introduced a more refined artistic identity and established the name under which he continues to perform. In 2021, Yoni Locx released his debut extended play (EP), titled "Little Heart EP". He has since built momentum by releasing several highly impactful singles and projects, including "Yehiwot Fettena & Struggle In Success," "Struggle In Success (Remix)," "Habeshawi," "Orenda," "Selihom," and his hit single "Ewnetawen."
-            </p>
-            
-            <h3 class="bio-subheading">Raw-Verse Records</h3>
-            <p>
-                Yoni Locx is the founder of Raw-Verse Records, an independent record label and recording studio currently under development. The label is intended to support independent artists and serve as a creative hub for music production, recording, and distribution. In addition to releasing his own forward-thinking records, he plans to use Raw-Verse Records to collaborate with, mentor, and develop emerging musicians.
-            </p>
-
-            <h3 class="bio-subheading">Musical Style</h3>
-            <p>
-                Yoni Locx's music combines contemporary hip-hop, trap, and rap with rich Ethiopian musical influences. He performs in both Amharic and English, allowing him to reach diverse audiences while proudly expressing his cultural background. His musical style seamlessly blends melodic elements with intricate lyrical storytelling, serving as a powerful reflection of both modern hip-hop trends and his native Ethiopian heritage.
-            </p>
-        </div>
-    </section>
-
-    <section id="videos">
-        <h2 class="section-title funky-title">Visual Showcase</h2>
-        <div class="video-grid">
-            <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/VCzVrVCd2Ls" allowfullscreen></iframe>
-            </div>
-            <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/NK5uvH3FQpc" allowfullscreen></iframe>
-            </div>
-            <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/y801FxNYriE" allowfullscreen></iframe>
-            </div>
-            
-            <a href="https://www.youtube.com/@yonilocx" target="_blank" class="video-card more-videos-card">
-                <span class="arrow-icon">➔</span>
-                <span class="more-text">More Videos</span>
-            </a>
-        </div>
-    </section>
-
-    <footer id="connect">
-        <div class="footer-grid">
-            <div>
-                <h4 class="group-title">Streaming Platforms</h4>
-                <div class="links-flex">
-                    <a href="https://open.spotify.com/artist/1cMP1n46bLB7v3cZhVluhx" target="_blank" class="network-btn"><i class="fab fa-spotify" style="color:#1DB954;"></i> Spotify</a>
-                    <a href="https://music.apple.com/dk/artist/yoni-locx/1494557001" target="_blank" class="network-btn"><i class="fab fa-apple" style="color:#ffffff;"></i> Apple</a>
-                    <a href="https://soundcloud.com/yonilocx" target="_blank" class="network-btn"><i class="fab fa-soundcloud" style="color:#FF5500;"></i> SoundCloud</a>
-                    <a href="https://music.youtube.com/channel/UCK240FK-2v6-kx-ohxr3iNA" target="_blank" class="network-btn"><i class="fab fa-youtube" style="color:#FF0000;"></i> YouTube Music</a>
-                </div>
-            </div>
-
-            <div>
-                <h4 class="group-title">Social Channels</h4>
-                <div class="links-flex">
-                    <a href="https://www.instagram.com/yonilocxx/" target="_blank" class="network-btn"><i class="fab fa-instagram" style="color:#E1306C;"></i> Instagram</a>
-                    <a href="https://x.com/yonilocx" target="_blank" class="network-btn"><i class="fab fa-x-twitter" style="color:#ffffff;"></i> X / Twitter</a>
-                    <a href="https://web.facebook.com/yonilocxx" target="_blank" class="network-btn"><i class="fab fa-facebook-f" style="color:#1877F2;"></i> Facebook</a>
-                    <a href="https://www.youtube.com/@yonilocx" target="_blank" class="network-btn"><i class="fab fa-youtube" style="color:#FF0000;"></i> YouTube</a>
-                </div>
+            <div id="modalStep2" style="display: none; text-align: center;">
+                <i class="fa-solid fa-circle-check success-icon"></i>
+                <h3 class="modal-title">You're On The List!</h3>
+                <p class="modal-sub">Thank you, <strong id="registeredName" style="color:#ffd700;"></strong>! We’ve sent a confirmation email to <span id="registeredEmail" style="color:#fff;"></span>. Check your inbox on <strong>September 25 @ 18:00 EAT</strong> for your release link.</p>
+                <button onclick="closePresaveModal()" class="modal-next-btn" style="margin-top: 15px;">Done</button>
             </div>
         </div>
-
-        <div class="good-size-logo-wrap">
-            <img src="logo.jpg" alt="Yoni Locx Master Logo" class="good-size-logo">
-        </div>
-        
-        <p class="copyright">© 2026 Yoni Locx // Raw-Verse Records.</p>
-    </footer>
+    </div>
 
     <script>
-        const epCard = document.getElementById('epCard');
-        const epContainer = document.getElementById('epContainer');
-        const closePanelBtn = document.getElementById('closePanelBtn');
+        // COUNTDOWN TIMER
+        const releaseTargetDate = new Date('September 25, 2026 18:00:00').getTime();
 
-        epCard.addEventListener('click', (e) => {
-            e.stopPropagation();
-            epContainer.classList.toggle('expanded');
-        });
+        function updateReleaseCountdown() {
+            const now = new Date().getTime();
+            const distance = releaseTargetDate - now;
 
-        closePanelBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            epContainer.classList.remove('expanded');
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!epContainer.contains(e.target)) {
-                epContainer.classList.remove('expanded');
+            if (distance <= 0) {
+                document.getElementById('countdown').innerHTML = 
+                    "<span style='color:#ffd700; font-weight:900; font-size:0.9rem; text-transform:uppercase;'>OUT NOW</span>";
+                return;
             }
-        });
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('cd-days').innerText = String(days).padStart(2, '0');
+            document.getElementById('cd-hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('cd-mins').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('cd-secs').innerText = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateReleaseCountdown, 1000);
+        updateReleaseCountdown();
+
+        // LANGUAGE TOGGLE
+        let isEnglish = true;
+        function toggleSongLang() {
+            const descEng = document.getElementById('descEnglish');
+            const descAmh = document.getElementById('descAmharic');
+
+            if (isEnglish) {
+                descEng.style.display = 'none';
+                descAmh.style.display = 'inline';
+                isEnglish = false;
+            } else {
+                descAmh.style.display = 'none';
+                descEng.style.display = 'inline';
+                isEnglish = true;
+            }
+        }
+
+        // MODAL FUNCTIONS
+        function openPresaveModal() {
+            document.getElementById('presaveModal').style.display = 'flex';
+        }
+
+        function closePresaveModal() {
+            document.getElementById('presaveModal').style.display = 'none';
+            document.getElementById('modalStep1').style.display = 'block';
+            document.getElementById('modalStep2').style.display = 'none';
+            document.getElementById('presaveForm').reset();
+        }
+
+        // FORM SUBMISSION & EMAILJS DISPATCH
+        function handlePresaveSubmit(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('fanName').value;
+            const email = document.getElementById('fanEmail').value;
+            const submitBtn = document.getElementById('submitBtn');
+
+            submitBtn.innerText = "Sending Confirmation...";
+            submitBtn.disabled = true;
+
+            const templateParams = {
+                to_name: name,
+                to_email: email,
+                song_title: "LIFE | ሕይወት",
+                artist_name: "YONI LOCX"
+            };
+
+            emailjs.send('service_35olzp6', 'template_4zyy6jv', templateParams)
+                .then(function(response) {
+                    document.getElementById('registeredName').innerText = name;
+                    document.getElementById('registeredEmail').innerText = email;
+                    document.getElementById('modalStep1').style.display = 'none';
+                    document.getElementById('modalStep2').style.display = 'block';
+                }, function(error) {
+                    alert("Submission failed. Please check your network connection.");
+                    console.error("EmailJS Error:", error);
+                })
+                .finally(function() {
+                    submitBtn.innerText = "Next";
+                    submitBtn.disabled = false;
+                });
+        }
     </script>
 </body>
 </html>
