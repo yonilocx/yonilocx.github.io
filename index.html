@@ -17,7 +17,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
         (function() {
-            // Initializing with your EmailJS Public Key
+            // Initializing with EmailJS Public Key
             emailjs.init("1L6i8lc-a7-2mb7LF");
         })();
     </script>
@@ -82,7 +82,7 @@
             100% { opacity: 0; }
         }
 
-        /* Lightened overlay mask */
+        /* Overlay mask */
         .scrim-overlay {
             position: fixed;
             top: 0;
@@ -93,7 +93,7 @@
             z-index: -1;
         }
 
-        /* Ultra Bold Chunky Title Styles */
+        /* Chunky Title Styles */
         .funky-title {
             font-weight: 900;
             text-transform: uppercase;
@@ -156,7 +156,7 @@
             padding: 110px 20px 40px 20px;
         }
 
-        /* EXACT PRE-SAVE CARD */
+        /* PRE-SAVE CARD */
         .presave-card {
             background: rgba(12, 12, 12, 0.92);
             backdrop-filter: blur(16px);
@@ -214,8 +214,8 @@
         }
 
         .presave-cover {
-            width: 150px;
-            height: 150px;
+            width: 160px;
+            height: 160px;
             border-radius: 8px;
             object-fit: cover;
             border: 1px solid rgba(255, 255, 255, 0.15);
@@ -249,29 +249,54 @@
             padding-left: 12px;
             color: #dddddd;
             font-size: 0.88rem;
-            line-height: 1.5;
-            margin-bottom: 10px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .presave-quote p {
+            margin-bottom: 8px;
+        }
+
+        .presave-quote p:last-child {
+            margin-bottom: 0;
         }
 
         .presave-tagline {
             color: #ffd700;
             font-weight: 900;
             font-size: 0.95rem;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
         }
 
-        .lang-badge {
+        /* INTERACTIVE LANGUAGE TOGGLE BADGE */
+        .lang-btn {
             display: inline-flex;
             align-items: center;
             gap: 6px;
             background: rgba(255, 215, 0, 0.15);
             color: #ffd700;
-            font-size: 0.75rem;
-            padding: 2px 8px;
+            font-size: 0.78rem;
+            padding: 4px 12px;
             border-radius: 4px;
-            border: 1px solid rgba(255, 215, 0, 0.3);
+            border: 1px solid rgba(255, 215, 0, 0.4);
             width: fit-content;
-            font-weight: 700;
+            font-weight: 900;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn:hover {
+            background: #ffd700;
+            color: #000000;
+        }
+
+        .presave-action-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
         }
 
         .presave-btn {
@@ -417,7 +442,7 @@
             text-shadow: 0px 2px 12px rgba(0,0,0,0.9);
         }
 
-        /* Fluid glass water transparency overlay */
+        /* Glass container styles */
         section {
             padding: 80px 6%;
             max-width: 1200px;
@@ -489,7 +514,7 @@
             font-weight: 700;
         }
 
-        /* Interactive Multi-Layout Wrapper */
+        /* Interactive EP Wrapper */
         .ep-card-container {
             position: relative;
             display: flex;
@@ -728,7 +753,7 @@
             .ep-card-container { flex-direction: column; }
             .presave-body { flex-direction: column; }
             .presave-header { flex-direction: column; align-items: flex-start; gap: 10px; }
-            .presave-cover { width: 100%; height: 200px; }
+            .presave-cover { width: 100%; height: 220px; }
         }
 
         @media (max-width: 480px) {
@@ -760,7 +785,7 @@
     </nav>
 
     <header>
-        <!-- PRE-SAVE CARD AT TOP -->
+        <!-- PRE-SAVE CARD WITH LANGUAGE TOGGLE -->
         <div class="presave-card">
             <div class="presave-header">
                 <div class="release-tag">
@@ -775,21 +800,32 @@
             </div>
 
             <div class="presave-body">
-                <img src="cover4.jpg" alt="LIFE | ሕይወት Album Cover" class="presave-cover">
+                <img src="upcoming.png" alt="LIFE | ሕይወት Album Cover" class="presave-cover">
                 <div class="presave-info">
                     <span class="presave-subtitle">YONI LOCX</span>
                     <h2 class="presave-title">LIFE | ሕይወት</h2>
-                    <div class="presave-quote">
-                        "LIFE | ሕይወት" explores two sides of the same world: the street life and the fancy life. The street side is about survival, hustling, pressure, loyalty, risks, setbacks, and chasing dreams from the bottom. The fancy side is the other end of the journey: money, luxury, freedom, and good times. The song captures the contrast between struggle and comfort, survival and success, the streets and the high life.
+                    
+                    <!-- DYNAMIC DESCRIPTION CONTAINER -->
+                    <div class="presave-quote" id="presaveDesc">
+                        <p>“LIFE | ሕይወት” explores two sides of the same world: the street life and the fancy life.</p>
+                        <p>The street side is about survival, hustling, pressure, loyalty, risks, setbacks, and chasing dreams from the bottom. It’s the struggle, hunger, and reality behind the lifestyle.</p>
+                        <p>The fancy side is the other end of the journey: money, expensive clothes, nice cars, beautiful girls, luxury, freedom, and good times.</p>
+                        <p>The song captures the contrast between struggle between survival and success, the streets and the high life.</p>
                     </div>
-                    <div class="presave-tagline">Two lifestyles. One LIFE | ሕይወት.</div>
-                    <div class="lang-badge"><i class="fa-solid fa-language"></i> አማርኛ</div>
+
+                    <div class="presave-tagline" id="presaveTagline">Two lifestyles. One LIFE | ሕይወት.</div>
                 </div>
             </div>
 
-            <button class="presave-btn" id="openPresaveModal">
-                <i class="fa-solid fa-circle-dot"></i> PRE-SAVE NOW
-            </button>
+            <div class="presave-action-row">
+                <button class="lang-btn" id="langToggleBtn">
+                    <i class="fa-solid fa-language"></i> Switch to አማርኛ
+                </button>
+
+                <button class="presave-btn" id="openPresaveModal">
+                    <i class="fa-solid fa-circle-dot"></i> PRE-SAVE NOW
+                </button>
+            </div>
         </div>
 
         <h1 class="hero-title funky-title">YONI LOCX</h1>
@@ -1006,6 +1042,43 @@
     </footer>
 
     <script>
+        // LANGUAGE TOGGLE DATA
+        const descEN = `
+            <p>“LIFE | ሕይወት” explores two sides of the same world: the street life and the fancy life.</p>
+            <p>The street side is about survival, hustling, pressure, loyalty, risks, setbacks, and chasing dreams from the bottom. It’s the struggle, hunger, and reality behind the lifestyle.</p>
+            <p>The fancy side is the other end of the journey: money, expensive clothes, nice cars, beautiful girls, luxury, freedom, and good times.</p>
+            <p>The song captures the contrast between struggle and comfort, survival and success, the streets and the high life.</p>
+        `;
+
+        const descAM = `
+            <p>“LIFE | ሕይወት” የዚች አለምን ሁለት ገፅታዎች ይዳስሳል፡ የጎዳና ህይወት እና የቅንጦት ህይወት።</p>
+            <p>የጎዳናው ገፅታ ስለ መታገል፣ ስለ ጥረት፣ ስለ ጫና፣ ታማኝነት፣ ስጋቶች፣ መሰናክሎች እና ከታች ተነስተው ህልምን ስለማሳደድ ነው። ከህይወት ዘይቤው በስተጀርባ ያለው ትግል፣ ራብ እና እውነታ ነው።</p>
+            <p>የቅንጦት ገፅታ ደግሞ የጉዞው ሌላኛው ማብቂያ ነው፡ ገንዘብ፣ ውድ ልብሶች፣ አሪፍ መኪኖች፣ ቆንጆ ሴቶች፣ ቅንጦት፣ ነፃነት እና ጥሩ ጊዜያት።</p>
+            <p>ዘፈኑ በትግል እና በምቾት፣ በህልውና እና በስኬት፣ በጎዳና እና በከፍተኛ ህይወት መካከል ያለውን ንፅፅር ይይዛል።</p>
+        `;
+
+        const taglineEN = "Two lifestyles. One LIFE | ሕይወት.";
+        const taglineAM = "ሁለት የህይወት ዘይቤዎች። አንድ LIFE | ሕይወት።";
+
+        let currentLang = 'EN';
+        const langToggleBtn = document.getElementById('langToggleBtn');
+        const presaveDesc = document.getElementById('presaveDesc');
+        const presaveTagline = document.getElementById('presaveTagline');
+
+        langToggleBtn.addEventListener('click', () => {
+            if (currentLang === 'EN') {
+                presaveDesc.innerHTML = descAM;
+                presaveTagline.innerText = taglineAM;
+                langToggleBtn.innerHTML = '<i class="fa-solid fa-language"></i> Switch to English';
+                currentLang = 'AM';
+            } else {
+                presaveDesc.innerHTML = descEN;
+                presaveTagline.innerText = taglineEN;
+                langToggleBtn.innerHTML = '<i class="fa-solid fa-language"></i> Switch to አማርኛ';
+                currentLang = 'EN';
+            }
+        });
+
         // MODAL TOGGLE & EMAILJS LOGIC
         const modal = document.getElementById('presaveModal');
         const openBtn = document.getElementById('openPresaveModal');
@@ -1038,7 +1111,6 @@
             submitBtn.innerText = "SENDING...";
             submitBtn.disabled = true;
 
-            // EmailJS Template Parameters matching your template
             const templateParams = {
                 to_name: user_name,
                 to_email: user_email,
@@ -1047,7 +1119,6 @@
                 release_date: "Sept 25 @ 18:00 EAT"
             };
 
-            // Triggering emailJS send
             emailjs.send('service_35olzp6', 'template_4zyy6jv', templateParams)
                 .then(function(response) {
                     formStatus.style.color = "#00ff88";
