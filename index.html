@@ -13,6 +13,15 @@
     <!-- Global Icon Library for Buttons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // Initializing with your EmailJS Public Key
+            emailjs.init("1L6i8lc-a7-2mb7LF");
+        })();
+    </script>
+
     <style>
         * {
             box-sizing: border-box;
@@ -73,7 +82,7 @@
             100% { opacity: 0; }
         }
 
-        /* Lightened overlay mask to prevent background photos from being too dark */
+        /* Lightened overlay mask */
         .scrim-overlay {
             position: fixed;
             top: 0;
@@ -138,14 +147,261 @@
         }
 
         header {
-            min-height: 95vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 0 20px;
+            padding: 110px 20px 40px 20px;
         }
+
+        /* EXACT PRE-SAVE CARD */
+        .presave-card {
+            background: rgba(12, 12, 12, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 215, 0, 0.35);
+            border-radius: 14px;
+            padding: 24px;
+            max-width: 820px;
+            width: 100%;
+            margin-bottom: 40px;
+            text-align: left;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(255, 215, 0, 0.05);
+        }
+
+        .presave-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .release-tag {
+            color: #ffd700;
+            font-size: 0.82rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .countdown-timer {
+            display: flex;
+            gap: 6px;
+        }
+
+        .time-box {
+            background: #000000;
+            color: #ffffff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 900;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-family: monospace;
+        }
+
+        .presave-body {
+            display: flex;
+            gap: 22px;
+            margin-bottom: 20px;
+        }
+
+        .presave-cover {
+            width: 150px;
+            height: 150px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            flex-shrink: 0;
+        }
+
+        .presave-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .presave-subtitle {
+            color: #ffd700;
+            font-size: 0.85rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .presave-title {
+            font-size: 2rem;
+            font-weight: 900;
+            margin: 2px 0 10px 0;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        .presave-quote {
+            border-left: 3px solid #ffd700;
+            padding-left: 12px;
+            color: #dddddd;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .presave-tagline {
+            color: #ffd700;
+            font-weight: 900;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+
+        .lang-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 215, 0, 0.15);
+            color: #ffd700;
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            width: fit-content;
+            font-weight: 700;
+        }
+
+        .presave-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: #ffd700;
+            color: #000000;
+            font-weight: 900;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 12px 26px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .presave-btn:hover {
+            background-color: #ffffff;
+            color: #000000;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
+        }
+
+        /* MODAL STYLES FOR EMAILJS INPUT */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-card {
+            background: #111111;
+            border: 1px solid #ffd700;
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 450px;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+            text-align: left;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 18px;
+            color: #888;
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: #ffffff;
+        }
+
+        .modal-title {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #ffd700;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .modal-desc {
+            font-size: 0.85rem;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+
+        .modal-form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .form-input {
+            background: #000;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            padding: 12px 14px;
+            color: #fff;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus {
+            border-color: #ffd700;
+        }
+
+        .submit-btn {
+            background: #ffd700;
+            color: #000;
+            font-weight: 900;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .submit-btn:hover {
+            background: #ffffff;
+        }
+
+        .form-status {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+        }
+
         .hero-title {
             font-size: 6.5rem;
             line-height: 0.9;
@@ -157,7 +413,7 @@
             letter-spacing: 5px;
             color: #ffea00;
             font-weight: 700;
-            margin-top: 10px;
+            margin-top: 5px;
             text-shadow: 0px 2px 12px rgba(0,0,0,0.9);
         }
 
@@ -177,62 +433,6 @@
             font-weight: 900;
             margin-bottom: 50px;
             text-align: center;
-        }
-
-        /* Top Pre-Save Banner Component */
-        .presave-banner {
-            background: rgba(20, 16, 12, 0.85);
-            border: 1px solid rgba(255, 215, 0, 0.4);
-            border-radius: 12px;
-            padding: 24px 30px;
-            margin-bottom: 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(255, 215, 0, 0.05);
-            transition: border-color 0.3s ease;
-        }
-        .presave-banner:hover {
-            border-color: #ffd700;
-        }
-        .presave-text-group h3 {
-            font-size: 1.4rem;
-            font-weight: 900;
-            color: #ffd700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 4px;
-        }
-        .presave-text-group p {
-            color: #cccccc;
-            font-size: 0.95rem;
-            font-weight: 400;
-        }
-        .presave-action-btn {
-            background-color: #ffd700;
-            color: #000000;
-            font-weight: 900;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            padding: 14px 28px;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-        }
-        .presave-action-btn:hover {
-            background-color: #ffffff;
-            color: #000000;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.4);
         }
 
         .tracks-grid {
@@ -289,7 +489,7 @@
             font-weight: 700;
         }
 
-        /* Interactive Multi-Layout Wrapper for Album Tracklist Dropdowns */
+        /* Interactive Multi-Layout Wrapper */
         .ep-card-container {
             position: relative;
             display: flex;
@@ -519,14 +719,6 @@
             font-weight: 700;
         }
 
-        /* Focus States for Accessibility */
-        a:focus-visible, 
-        button:focus-visible, 
-        [tabindex="0"]:focus-visible {
-            outline: 2px solid #ffd700;
-            outline-offset: 4px;
-        }
-
         @media (max-width: 768px) {
             .hero-title { font-size: 3.8rem; }
             .section-title { font-size: 2.2rem; }
@@ -534,7 +726,9 @@
             section { padding: 50px 20px; }
             .good-size-logo { height: 60px; }
             .ep-card-container { flex-direction: column; }
-            .presave-banner { flex-direction: column; text-align: center; }
+            .presave-body { flex-direction: column; }
+            .presave-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .presave-cover { width: 100%; height: 200px; }
         }
 
         @media (max-width: 480px) {
@@ -566,22 +760,60 @@
     </nav>
 
     <header>
+        <!-- PRE-SAVE CARD AT TOP -->
+        <div class="presave-card">
+            <div class="presave-header">
+                <div class="release-tag">
+                    <i class="fa-solid fa-fire"></i> NEW RELEASE — SEPT 25 @ 18:00 EAT
+                </div>
+                <div class="countdown-timer" id="timer">
+                    <span class="time-box" id="days">06 D</span>
+                    <span class="time-box" id="hours">08 H</span>
+                    <span class="time-box" id="mins">00 M</span>
+                    <span class="time-box" id="secs">42 S</span>
+                </div>
+            </div>
+
+            <div class="presave-body">
+                <img src="cover4.jpg" alt="LIFE | ሕይወት Album Cover" class="presave-cover">
+                <div class="presave-info">
+                    <span class="presave-subtitle">YONI LOCX</span>
+                    <h2 class="presave-title">LIFE | ሕይወት</h2>
+                    <div class="presave-quote">
+                        "LIFE | ሕይወት" explores two sides of the same world: the street life and the fancy life. The street side is about survival, hustling, pressure, loyalty, risks, setbacks, and chasing dreams from the bottom. The fancy side is the other end of the journey: money, luxury, freedom, and good times. The song captures the contrast between struggle and comfort, survival and success, the streets and the high life.
+                    </div>
+                    <div class="presave-tagline">Two lifestyles. One LIFE | ሕይወት.</div>
+                    <div class="lang-badge"><i class="fa-solid fa-language"></i> አማርኛ</div>
+                </div>
+            </div>
+
+            <button class="presave-btn" id="openPresaveModal">
+                <i class="fa-solid fa-circle-dot"></i> PRE-SAVE NOW
+            </button>
+        </div>
+
         <h1 class="hero-title funky-title">YONI LOCX</h1>
         <p class="hero-tagline">"Lord Knows I'm Trying"</p>
     </header>
 
-    <section id="music">
-        <!-- TOP PRE-SAVE BANNER -->
-        <div class="presave-banner">
-            <div class="presave-text-group">
-                <h3>Pre-Save Next Release</h3>
-                <p>Be the first to stream upcoming tracks on Spotify, Apple Music & SoundCloud.</p>
-            </div>
-            <a href="https://soundcloud.com/yonilocx" target="_blank" rel="noopener" class="presave-action-btn">
-                <i class="fa-solid fa-bookmark"></i> Pre-Save Now
-            </a>
-        </div>
+    <!-- EMAIL PRE-SAVE MODAL -->
+    <div class="modal-overlay" id="presaveModal">
+        <div class="modal-card">
+            <span class="modal-close" id="closeModalBtn">&times;</span>
+            <h3 class="modal-title">Pre-Save "LIFE | ሕይወት"</h3>
+            <p class="modal-desc">Enter your name and email to pre-save the track. We'll send you an instant release notification as soon as it drops!</p>
+            
+            <form class="modal-form" id="presaveForm">
+                <input type="text" id="fanName" class="form-input" placeholder="Your Name" required>
+                <input type="email" id="fanEmail" class="form-input" placeholder="Your Email Address" required>
+                <button type="submit" class="submit-btn" id="submitBtn">CONFIRM PRE-SAVE</button>
+            </form>
 
+            <div class="form-status" id="formStatus"></div>
+        </div>
+    </div>
+
+    <section id="music">
         <h2 class="section-title funky-title">Selected Tracks</h2>
         <div class="tracks-grid">
             
@@ -629,7 +861,7 @@
                 </div>
             </a>
 
-            <!-- Track 5: Beast -->
+            <!-- Track 5 -->
             <a href="https://soundcloud.com/yonilocx" target="_blank" rel="noopener" class="track-card">
                 <div class="album-art">
                     <img src="cover6.jpg" alt="Beast Cover">
@@ -640,7 +872,7 @@
                 </div>
             </a>
 
-            <!-- Track 6: Littel Heart EP Container Box -->
+            <!-- Track 6 -->
             <div class="ep-card-container" id="epContainer">
                 <div class="track-card" id="epCard" style="flex: 1;" tabindex="0" role="button" aria-expanded="false" aria-label="Toggle Littel Heart EP tracklist">
                     <div class="album-art">
@@ -774,21 +1006,85 @@
     </footer>
 
     <script>
+        // MODAL TOGGLE & EMAILJS LOGIC
+        const modal = document.getElementById('presaveModal');
+        const openBtn = document.getElementById('openPresaveModal');
+        const closeBtn = document.getElementById('closeModalBtn');
+        const presaveForm = document.getElementById('presaveForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const formStatus = document.getElementById('formStatus');
+
+        openBtn.addEventListener('click', () => {
+            modal.style.display = 'flex';
+            formStatus.style.display = 'none';
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        presaveForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const user_name = document.getElementById('fanName').value;
+            const user_email = document.getElementById('fanEmail').value;
+
+            submitBtn.innerText = "SENDING...";
+            submitBtn.disabled = true;
+
+            // EmailJS Template Parameters matching your template
+            const templateParams = {
+                to_name: user_name,
+                to_email: user_email,
+                song_title: "LIFE | ሕይወት",
+                artist_name: "YONI LOCX",
+                release_date: "Sept 25 @ 18:00 EAT"
+            };
+
+            // Triggering emailJS send
+            emailjs.send('service_35olzp6', 'template_4zyy6jv', templateParams)
+                .then(function(response) {
+                    formStatus.style.color = "#00ff88";
+                    formStatus.innerText = "✓ Pre-saved successfully! Check your email inbox.";
+                    formStatus.style.display = "block";
+                    submitBtn.innerText = "SUCCESSFUL!";
+                    
+                    setTimeout(() => {
+                        modal.style.display = 'none';
+                        presaveForm.reset();
+                        submitBtn.innerText = "CONFIRM PRE-SAVE";
+                        submitBtn.disabled = false;
+                    }, 2500);
+
+                }, function(error) {
+                    formStatus.style.color = "#ff4444";
+                    formStatus.innerText = "Error sending request. Please try again.";
+                    formStatus.style.display = "block";
+                    submitBtn.innerText = "CONFIRM PRE-SAVE";
+                    submitBtn.disabled = false;
+                    console.error("EmailJS Error:", error);
+                });
+        });
+
+        // EP PANEL DROPDOWN TOGGLE
         const epCard = document.getElementById('epCard');
         const epContainer = document.getElementById('epContainer');
         const closePanelBtn = document.getElementById('closePanelBtn');
 
-        // Function to toggle EP panel
         function toggleEP(e) {
             e.stopPropagation();
             const isExpanded = epContainer.classList.toggle('expanded');
             epCard.setAttribute('aria-expanded', isExpanded);
         }
 
-        // Toggle panel expansion when clicking the main EP card
         epCard.addEventListener('click', toggleEP);
 
-        // Keyboard handler for accessibility (Enter or Space key)
         epCard.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
@@ -796,14 +1092,12 @@
             }
         });
 
-        // Close panel when close button is clicked
         closePanelBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             epContainer.classList.remove('expanded');
             epCard.setAttribute('aria-expanded', 'false');
         });
 
-        // Close panel if clicking anywhere outside the container box
         document.addEventListener('click', (e) => {
             if (!epContainer.contains(e.target)) {
                 epContainer.classList.remove('expanded');
