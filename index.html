@@ -156,15 +156,15 @@
             padding: 110px 20px 40px 20px;
         }
 
-        /* PRE-SAVE CARD */
+        /* PRE-SAVE CARD — EXPANDED WIDTH */
         .presave-card {
             background: rgba(12, 12, 12, 0.92);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 215, 0, 0.35);
             border-radius: 14px;
-            padding: 24px;
-            max-width: 820px;
+            padding: 28px;
+            max-width: 960px; /* Stretched wider from 820px */
             width: 100%;
             margin-bottom: 40px;
             text-align: left;
@@ -209,14 +209,16 @@
 
         .presave-body {
             display: flex;
-            gap: 22px;
+            gap: 28px;
             margin-bottom: 20px;
+            align-items: center;
         }
 
+        /* LARGER ALBUM ART */
         .presave-cover {
-            width: 160px;
-            height: 160px;
-            border-radius: 8px;
+            width: 220px; /* Scaled up from 160px */
+            height: 220px; /* Scaled up from 160px */
+            border-radius: 10px;
             object-fit: cover;
             border: 1px solid rgba(255, 255, 255, 0.15);
             flex-shrink: 0;
@@ -226,6 +228,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            flex: 1;
         }
 
         .presave-subtitle {
@@ -237,7 +240,7 @@
         }
 
         .presave-title {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 900;
             margin: 2px 0 10px 0;
             color: #ffffff;
@@ -246,9 +249,9 @@
 
         .presave-quote {
             border-left: 3px solid #ffd700;
-            padding-left: 12px;
+            padding-left: 14px;
             color: #dddddd;
-            font-size: 0.88rem;
+            font-size: 0.9rem;
             line-height: 1.6;
             margin-bottom: 12px;
         }
@@ -276,7 +279,7 @@
             background: rgba(255, 215, 0, 0.15);
             color: #ffd700;
             font-size: 0.78rem;
-            padding: 4px 12px;
+            padding: 6px 14px;
             border-radius: 4px;
             border: 1px solid rgba(255, 215, 0, 0.4);
             width: fit-content;
@@ -751,9 +754,9 @@
             section { padding: 50px 20px; }
             .good-size-logo { height: 60px; }
             .ep-card-container { flex-direction: column; }
-            .presave-body { flex-direction: column; }
+            .presave-body { flex-direction: column; align-items: flex-start; }
             .presave-header { flex-direction: column; align-items: flex-start; gap: 10px; }
-            .presave-cover { width: 100%; height: 220px; }
+            .presave-cover { width: 100%; height: 260px; }
         }
 
         @media (max-width: 480px) {
@@ -785,7 +788,7 @@
     </nav>
 
     <header>
-        <!-- PRE-SAVE CARD WITH LANGUAGE TOGGLE -->
+        <!-- PRE-SAVE CARD WITH EXPANDED LAYOUT -->
         <div class="presave-card">
             <div class="presave-header">
                 <div class="release-tag">
@@ -810,7 +813,7 @@
                         <p>“LIFE | ሕይወት” explores two sides of the same world: the street life and the fancy life.</p>
                         <p>The street side is about survival, hustling, pressure, loyalty, risks, setbacks, and chasing dreams from the bottom. It’s the struggle, hunger, and reality behind the lifestyle.</p>
                         <p>The fancy side is the other end of the journey: money, expensive clothes, nice cars, beautiful girls, luxury, freedom, and good times.</p>
-                        <p>The song captures the contrast between struggle between survival and success, the streets and the high life.</p>
+                        <p>The song captures the contrast between struggle and comfort, survival and success, the streets and the high life.</p>
                     </div>
 
                     <div class="presave-tagline" id="presaveTagline">Two lifestyles. One LIFE | ሕይወት.</div>
