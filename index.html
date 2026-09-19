@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YONI LOCX | Official Website</title>
     
+    <!-- Open Graph & Social Previews -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="YONI LOCX | Official Website">
+    <meta property="og:description" content="Official website of Ethiopian artist, songwriter, and producer Yoni Locx.">
+    <meta property="og:image" content="https://yonilocx.github.io/cover4.jpg">
+    <meta property="og:url" content="https://yonilocx.github.io/">
+    <meta name="twitter:card" content="summary_large_image">
+    
     <!-- Heavy display and clean body font pairings -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +21,7 @@
     <!-- Global Icon Library for Buttons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-    <!-- Updated Schema Markup to explicitly feed Google your age, occupation, and identity details -->
+    <!-- Schema Markup -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -104,7 +112,6 @@
             100% { opacity: 0; }
         }
 
-        /* Lightened overlay mask to prevent background photos from being too dark */
         .scrim-overlay {
             position: fixed;
             top: 0;
@@ -115,7 +122,6 @@
             z-index: -1;
         }
 
-        /* Ultra Bold Chunky Title Styles */
         .funky-title {
             font-weight: 900;
             text-transform: uppercase;
@@ -147,7 +153,7 @@
             width: auto;
             object-fit: contain;
             background: transparent;
-            mix-blend-mode: screen; /* Blends solid black background color seamlessly into the dark layout */
+            mix-blend-mode: screen;
         }
         .nav-text {
             font-weight: 900;
@@ -194,7 +200,6 @@
             text-shadow: 0px 2px 12px rgba(0,0,0,0.9);
         }
 
-        /* Fluid glass water transparency overlay */
         section {
             padding: 80px 6%;
             max-width: 1200px;
@@ -266,13 +271,13 @@
             font-weight: 700;
         }
 
-        /* Interactive Multi-Layout Wrapper for Album Tracklist Dropdowns */
         .ep-card-container {
             position: relative;
             display: flex;
             gap: 20px;
             align-items: stretch;
             grid-column: span 1;
+            user-select: none;
         }
         @media (min-width: 900px) {
             .ep-card-container.expanded {
@@ -404,9 +409,8 @@
             border: 0;
         }
         
-        /* More Videos card showing cover7.jpg as a clean, stylish backdrop */
         .more-videos-card {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.85)), url('cover6.jpg');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.85)), url('cover7.jpg');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -418,7 +422,7 @@
             border: 1px solid rgba(255, 234, 0, 0.3);
         }
         .more-videos-card:hover {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.65)), url('cover6.jpg');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.65)), url('cover7.jpg');
             border-color: #ffea00;
             transform: scale(1.02);
             box-shadow: 0 10px 20px rgba(255, 215, 0, 0.15);
@@ -491,12 +495,12 @@
             text-align: center;
         }
         .good-size-logo {
-            height: 300px; /* Scaled up x4 for high-impact desktop branding */
+            height: 300px;
             width: auto;
             object-fit: contain;
             filter: drop-shadow(0px 4px 15px rgba(255, 215, 0, 0.15));
             background: transparent;
-            mix-blend-mode: screen; /* Blends solid black background color seamlessly into the dark layout */
+            mix-blend-mode: screen;
         }
 
         .copyright {
@@ -513,7 +517,7 @@
             .video-grid, .footer-grid { grid-template-columns: 1fr; }
             section { padding: 50px 20px; }
             .ep-card-container { flex-direction: column; }
-            .good-size-logo { height: 70px; } /* Kept clean and ultra-responsive on phone screens */
+            .good-size-logo { height: 70px; }
         }
     </style>
 </head>
@@ -547,7 +551,6 @@
         <h2 class="section-title funky-title">Selected Tracks</h2>
         <div class="tracks-grid">
             
-            <!-- Track 1 -->
             <a href="https://www.youtube.com/watch?v=VCzVrVCd2Ls" target="_blank" class="track-card">
                 <div class="album-art">
                     <img src="cover4.jpg" alt="Ewnetawen Cover">
@@ -558,7 +561,6 @@
                 </div>
             </a>
 
-            <!-- Track 2 -->
             <a href="https://www.youtube.com/watch?v=NK5uvH3FQpc" target="_blank" class="track-card">
                 <div class="album-art">
                     <img src="cover1.jpg" alt="Selihom Cover">
@@ -569,7 +571,6 @@
                 </div>
             </a>
 
-            <!-- Track 3 -->
             <a href="https://www.youtube.com/watch?v=y801FxNYriE" target="_blank" class="track-card">
                 <div class="album-art">
                     <img src="cover3.jpg" alt="Orenda Cover">
@@ -580,7 +581,6 @@
                 </div>
             </a>
 
-            <!-- Track 4 -->
             <a href="https://www.youtube.com/watch?v=52UAAJEqImE" target="_blank" class="track-card">
                 <div class="album-art">
                     <img src="cover2.jpg" alt="Habeshawi Cover">
@@ -591,7 +591,6 @@
                 </div>
             </a>
 
-            <!-- Track 5: Beast -->
             <a href="https://soundcloud.com/yonilocx" target="_blank" class="track-card">
                 <div class="album-art">
                     <img src="cover5.jpg" alt="Beast Cover">
@@ -602,7 +601,6 @@
                 </div>
             </a>
 
-            <!-- Track 6: Littel Heart EP Container Box -->
             <div class="ep-card-container" id="epContainer">
                 <div class="track-card" id="epCard" style="flex: 1;">
                     <div class="album-art">
@@ -698,7 +696,6 @@
                 <iframe src="https://www.youtube.com/embed/y801FxNYriE" allowfullscreen></iframe>
             </div>
             
-            <!-- More Videos card featuring cover7.jpg as a backdrop image -->
             <a href="https://www.youtube.com/@yonilocx" target="_blank" class="video-card more-videos-card">
                 <span class="arrow-icon">➔</span>
                 <span class="more-text">More Videos</span>
@@ -741,19 +738,16 @@
         const epContainer = document.getElementById('epContainer');
         const closePanelBtn = document.getElementById('closePanelBtn');
 
-        // Toggle panel expansion when clicking the main EP card
         epCard.addEventListener('click', (e) => {
             e.stopPropagation();
             epContainer.classList.toggle('expanded');
         });
 
-        // Close panel when close button is clicked
         closePanelBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             epContainer.classList.remove('expanded');
         });
 
-        // Close panel if clicking anywhere outside the container box
         document.addEventListener('click', (e) => {
             if (!epContainer.contains(e.target)) {
                 epContainer.classList.remove('expanded');
