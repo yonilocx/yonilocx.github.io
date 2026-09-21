@@ -1223,33 +1223,6 @@
                 epContainer.classList.remove('expanded');
                 epCard.setAttribute('aria-expanded', 'false');
             }
-        });// EmailJS Initialization & Pre-Save Form Submission
-    (function() {
-        emailjs.init("1L6i8lc-a7-2mb7LF");
-    })();
-
-    const presaveForm = document.getElementById('presaveForm');
-
-    if (presaveForm) {
-        presaveForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const nameInput = document.getElementById('fanName').value;
-            const emailInput = document.getElementById('fanEmail').value;
-
-            const templateParams = {
-                to_name: nameInput,
-                user_email: emailInput
-            };
-
-            emailjs.send('default_service', 'template_4zyy6jv', templateParams)
-                .then(function(response) {
-                    console.log('SUCCESS!', response.status, response.text);
-                    alert('Pre-saved successfully!');
-                }, function(error) {
-                    console.log('FAILED...', error);
-                    alert('Error sending request. Please try again.');
-                });
         });
     </script>
 </body>
